@@ -18,7 +18,7 @@ export default async function (email: string, password: string): Promise<any> {
       throw JSON.stringify({
         message: 'Contraseña equivocada',
         status: 400,
-        redirect: '/',
+        redirect: '/ingresar',
       })
     }
 

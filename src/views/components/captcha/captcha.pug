@@ -7,7 +7,7 @@ mixin captcha()
       .captcha-img
         img(src='/public/images/captcha-bg.png', alt='Captch Background')
         span.captcha
-      button.reload-btn 🤓
+      button.reload-btn(type="button") 🤓
     .input-area
       input.input-captcha(type='text', placeholder='Enter captcha', maxlength='6', spellcheck='false', required='')
       button.check-btn Check

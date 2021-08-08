@@ -46,8 +46,8 @@ export default (app: router) => {
         const user = await login(email, pswd)
 
         const USERS_ROUTES: Object = {
-          admin: '/admin-route',
-          client: '/client-route',
+          0: '/admin-route',
+          1: '/client-route',
         }
 
         const DEFAULT_ROUTE: string = '/'
@@ -62,18 +62,25 @@ export default (app: router) => {
           })
         }
 
-        req.session['message'] = {
+        /* req.session['message'] = {
           type: 'success',
           text: 'Bienvenido',
         }
-        return res.redirect(route)
+        return res.redirect(route) */
 
-        // return req.logIn(user, function (err: any) {
-        //   if (err)
-        //     throw 'Ha ocurrido un error interno al iniciar su sesión, intenlo más tarde.'
-        //   req.flash('success', `Bienvenido`)
-        //   return res.redirect(route)
-        // })
+        return req.logIn(user, function (err: any) {
+          if (err)
+            throw JSON.stringify({
+              message: 'Ha ocurrido un error interno al iniciar su sesión, intenlo más tarde.',
+              status: 404,
+              redirect: '/',
+            })
+          req.session['message'] = {
+            type: 'success',
+            text: 'Bienvenido',
+          }
+          return res.redirect(route)
+        })
       } catch (error) {
         managmentError(error, req, res)
       }
@@ -81,7 +88,7 @@ export default (app: router) => {
 
   app
     .route('/registrarme')
-    .get(isLogged, (_req: req, res: res) => res.render('access/register'))
+    .get(isLogged, (_req: req, res: res) => res.render('access/register/register'))
     .post(isLogged, async (req: req, res: res): Promise<void> => {
       try {
         const { email, pswd } = req.body
