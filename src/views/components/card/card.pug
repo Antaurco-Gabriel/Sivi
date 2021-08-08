@@ -1,0 +1,24 @@
+style
+  include ./card.css
+
+mixin article( title, autor, link, description )
+  article.article: .article-wrapper
+    h1.article__title(v-html!=attributes[':title'])=title
+    h2.article__sub-title(v-html!=attributes[':autor'])=autor
+    // a.article__link( href!=attributes[':link']||link v-html!=attributes[':link'])=link
+    a.article__link( href!=attributes[':link']||link) link-del-mixin
+    p.article__description(v-html!=attributes[':description'])=description
+    button.article__button( 
+      :autor!=attributes[':autor'],
+      onclick=`showemail(event,'${autor}')`
+    ) button
+    if block
+      block
+
+mixin article-container(title, autor, description)
+  .article-container
+    if block
+      block
+
+script
+  include ./card.js

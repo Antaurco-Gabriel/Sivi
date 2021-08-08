@@ -1,0 +1,112 @@
+body {
+  overflow-x: hidden;
+}
+
+#alert {
+  --error-background: #ffdee7;
+  --error-color-text: #fd9da2;
+  --info-background: #d6f1ff;
+  --info-color-text: #85cff3;
+  --success-background: #c5f3d4;
+  --success-color-text: #299a5b;
+  --warning-background: #ffdb9b;
+  --warning-color-text: #ffa502;
+
+  --theme-text-alert: black;
+  --theme-background-alert: #fff;
+}
+
+#alert.success {
+  --theme-text-alert: var(--success-color-text);
+  --theme-background-alert: var(--success-background);
+}
+#alert.info {
+  --theme-text-alert: var(--info-color-text);
+  --theme-background-alert: var(--info-background);
+}
+#alert.error {
+  --theme-text-alert: var(--error-color-text);
+  --theme-background-alert: var(--error-background);
+}
+#alert.warning {
+  --theme-text-alert: var(--warning-color-text);
+  --theme-background-alert: var(--warning-background);
+}
+
+.alert {
+  padding: 20px 40px;
+  min-width: 420px;
+  position: fixed;
+  right: 0;
+  top: 5vh;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  border-left: 8px solid var(--theme-text-alert);
+  background: var(--theme-background-alert);
+}
+
+.showAlert {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.alert__msg {
+  padding: 0 20px;
+  font-size: 18px;
+  color: var(--theme-text-alert);
+}
+.alert--show {
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-10%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+.alert--hide {
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.alert__close-btn {
+  position: absolute;
+  height: 100%;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 20px 18px;
+  cursor: pointer;
+  background: var(--theme-text-alert);
+}
+
+.alert__close-btn:hover {
+  background: var(--theme-background-alert);
+}
+.alert__close-btn .fas {
+  color: #ce8500;
+  font-size: 22px;
+  line-height: 40px;
+}

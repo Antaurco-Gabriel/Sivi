@@ -1,0 +1,16 @@
+{
+  "watch":[
+    "src"
+  ],
+  "ext":"ts",
+  "env": {
+    "NODE_ENV": "dev"
+  },
+  "ignore":[
+    ".git", 
+    "src/**/*.spec.ts",
+    "node_modules/**/*",
+    "public"
+  ],
+  "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts"
+}

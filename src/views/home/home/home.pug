@@ -1,0 +1,19 @@
+extends ../../layouts/landing/landing
+
+block head
+  // link( rel='stylesheet', href='/views/components/card/card.css' )
+
+block content
+  include ../../components/card/card
+
+  p Content
+  +article-container()
+    each i in [ 1,2, 3]
+      +article(
+        'Titulo '+i,
+        'Autor '+i,
+        'Link '+i,
+        'Descripción '+i
+      )
+    else
+      p No hay información que mostrar

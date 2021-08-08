@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta( charset='utf-8' )
+    meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+    meta( name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' )
+    block meta
+
+    title #{title || 'Landing Framework'} 
+
+    link( rel='shorcut icon', href='#' )
+    link( rel='stylesheet', href='/public/css/normalize.min.css' )
+    link( rel='stylesheet', href='/public/css/globals.css' )
+    link( rel='stylesheet', href='/views/layouts/landing/landing.css' )
+    block head
+
+    block scripts
+
+  body.container
+    include ../../components/header/header
+    .header
+      +header()
+        a(href='/ingresar') Ingresar
+    .sidebar 
+      include ../../components/sidebar/sidebar
+    .widget-1 
+      p widget-1
+    .widget-2
+      p widget-2
+    .content 
+      block content
+
+    .footer 
+      include ../../components/footer/footer

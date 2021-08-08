@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                          
+    "module": "commonjs",                    
+    "outDir": "./build/src",                
+    "strict": true,                        
+    "moduleResolution": "node",           
+    "esModuleInterop": true,                 
+    "suppressImplicitAnyIndexErrors": true,    
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,                
+    "forceConsistentCasingInFileNames": true,  
+    "baseUrl": "src",
+    "paths": {
+      "@Routes/*": [ "routes-middlewares/*" ],
+      "@Helpers/*": [ "helpers/*" ],
+      "@Middlewares/*": [ "routes-middlewares/middlewares/*" ],
+      "@Loaders/*": [ "loaders/*" ],
+      "@Keys": [ "config/key" ],
+      "@Access/*": [ "services/Access/*" ],
+      "@Admin/*": [ "services/Admin/*" ],
+      "@Example/*": [ "services/Example/*" ]
+    },
+    "plugins": [
+      { "transform": "ts-transform-paths" }
+    ]
+  },
+  "include":[
+    "./src/**/*"
+  ],
+  "excluye":[
+    "node_modules/**/*"
+  ]
+}
