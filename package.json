@@ -11,7 +11,7 @@
     "install:deploy": "npm install --production",
     "start:deploy": "node build/src",
     "install:dev": "npm install --no-save cypress",
-    "dev": "nodemon",
+    "dev": "nodemon"
   },
   "repository": {
     "type": "git",
