@@ -12,7 +12,7 @@
     "start:deploy": "node build/src",
     "install:dev": "npm install --no-save cypress",
     "dev": "nodemon",
-    "start": "nodemon index.ts"
+    "start": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
