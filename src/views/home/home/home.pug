@@ -1,0 +1,17 @@
+extends ../../layouts/landing/landing
+
+block head
+  link(rel="stylesheet", href='/views/home/home/home.css')
+
+block content
+  include ../../components/card/card
+  .home-container
+    +card-container()
+      +card-link(
+        'Ficha de sintomatología',
+        '/sintomatologia',
+        '/public/images/doctor.svg'
+      )
+
+block append scripts
+  script(src='/views/home/home/home.js' defer)

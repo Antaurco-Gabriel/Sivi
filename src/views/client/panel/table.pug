@@ -1,0 +1,78 @@
+extends ../layouts/main
+
+//- EDIT BLOCK META
+block append meta
+  meta(id="meta-location" property='og:url' content='')
+  meta(property='og:type' content='article')
+  meta(property='og:title' content='Tabla')
+  meta(property='og:description' content='La página para la tabla')
+  meta(property='og:image' content='https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497')
+  meta(name='twitter:card' content='summary')
+  meta(name='twitter:title' content='Tabla')
+  meta(name='twitter:description' content='La página para la tabla')
+  meta(name='twitter:image' content='https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497')
+
+//- EDIT BLOCK HEAD
+block append head
+  link(rel="stylesheet", href='/specific-assets/service-x/assets/table.css')
+  link(rel="stylesheet", href='/specific-assets/service-x/assets/loader.css')
+  script(async src="https://unpkg.com/vue@next")
+
+//- EDIT BLOCK CONTENT
+block content
+  section.table-section(id="table")
+    .table-filter-section.my-3
+      .table-filter-section__button(v-for="type, index in filters" v-bind:class="{['table-filter-section__button--active']: type.active}" @click="filter(type.name, index)")
+        span.table-filter-section__text  {{ type.name }}
+    .loader-section(:style="{'display': display}")
+      .loader-section__animation
+        span
+        span
+        span
+    //- (id="pogoData" data = pogoData)
+    .table-table-section.col-md-10.my-2(v-if="displayedData.length>0")
+      table.table-table-section__table
+        thead
+          tr
+            td(scope="col") Imagen
+            td(scope="col") Nombre
+            td(scope="col") PS
+            td(scope="col") Ataque
+            td(scope="col") Defensa
+            td(scope="col") Ataque Especial
+            td(scope="col") Defensa Especial
+            td(scope="col") Velocidad
+        tbody
+          tr(v-for="(data, index) in displayedData" :key="data._id")
+            td.table-table-section__image-td(scope="col")
+              img.table-table-section__image-img(:src='data.data.imgGame' alt='')
+            td.table-table-section__text-capitalize(scope="col") {{data.name}}
+            td(scope="col") {{data.data.hp}}
+            td(scope="col") {{data.data.attack}}
+            td(scope="col") {{data.data.defense}}
+            td(scope="col") {{data.data.specialAttack}}
+            td(scope="col") {{data.data.specialDefense}}
+            td(scope="col") {{data.data.speed}}
+    
+    .col-md-10.table-pagination-section(v-else)
+      h3(style="color:white; font-weight: 400;") No hay Pokémon que coincidan con los filtros
+
+    .col-md-10.table-pagination-section(v-if="displayedData.length>0")
+      ul.table-pagination
+        li
+          a.table-pagination__page.table-pagination__page--firt(v-if="page != 1 && page >= 4" @click="page = 1") {{pages[0]}}
+        li
+          a(v-if="page != 1" @click="page--")
+            span(aria-hidden='true') &laquo;
+        li(:class="page == pageNumber? 'active':'' " v-for="pageNumber in pages.slice(page==1?page-1: page==2?page-2:page-3, page==1?page+3:page+2)" @click="page = pageNumber" :key="pageNumber")
+          a() {{pageNumber}}
+        li
+          a(v-if="page < pages.length" @click="page++")
+            span(aria-hidden='true') &raquo;
+        li
+          a.table-pagination__page.table-pagination__page--last(v-if="page != pages.length && page <= pages.length - 3" @click="page = pages.length") {{pages.length}}
+
+//- EDIT BLOCK SCRIPT
+block append scripts
+  script(src='/specific-assets/service-x/assets/table.js')
+  script(src='/specific-assets/service-x/assets/loader.js')

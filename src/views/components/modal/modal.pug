@@ -1,0 +1,16 @@
+style
+  include ./modal.css
+
+mixin modal(index, autor)
+  button#open.button__modal(:index!=attributes[':index'], onclick=`showModal(event, '${index}')`) Hacer Click
+  .modal-container(:id=`'modal_container_'+${attributes[':index']||index}`)
+    .modal
+      if attributes[':autor']
+        h1(v-html!=`'Ventana modal '+${ attributes[':autor'] }`) 
+      else
+        h1 Ventana modal #{autor}
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque assumenda dignissimos illo explicabo natus quia repellat, praesentium voluptatibus harum ipsam dolorem cumque labore sunt dicta consectetur, nesciunt maiores delectus maxime?
+      button.button__modal#close(:index!=attributes[':index'], onclick=`closeModal(event, '${index}')`) Cerrar
+
+script
+  include ./modal.js

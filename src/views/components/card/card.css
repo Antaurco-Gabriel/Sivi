@@ -1,0 +1,44 @@
+.card-container {
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: dense;
+  grid-auto-rows: 20rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ededed;
+  color: black;
+  text-align: start;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.card a {
+  color: red;
+}
+
+.card__title{
+  height: 20%;
+  overflow-wrap: break-word;
+  text-align: center;
+  display: flex;
+}
+
+.card__title span{
+  margin: auto;
+  font-weight: 500;
+  font-size: 26px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.card__img {
+  height: 80%;
+  width: 80%;
+  padding: 10px 0;
+}

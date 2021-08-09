@@ -1,0 +1,11 @@
+style
+  include ./header.css
+
+mixin header()
+  header.header-block
+    a(href='/') SIVI 
+    .links
+      if block
+        block
+      // -else
+        p No content provided

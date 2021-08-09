@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta( charset='utf-8' )
+    meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+    meta( name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' )
+    block meta
+
+    title #{title || 'Framework'} 
+
+    link( rel='shorcut icon', href='#' )
+    link( rel='stylesheet', href='/public/css/normalize.min.css' )
+    link( rel='stylesheet', href='/public/css/globals.css' )
+    link( rel='stylesheet', href='/views/layouts/access/access.css' )
+
+    block head
+
+    block scripts
+
+  body.layout-access
+    include ../../components/header/header
+    include ../../components/flash/flash
+    .header
+      +header()
+        a(href='/') Home
+    .content
+      block content
+    .footer
+      include ../../components/footer/footer

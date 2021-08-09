@@ -1,0 +1,38 @@
+extends ../../layouts/access/access
+
+block append meta
+  meta(id="meta-location" property='og:url' content='')
+  meta(property='og:type' content='article')
+  meta(property='og:title' content='Iniciar Sesión')
+  meta(property='og:description' content='La página para iniciar sesión')
+  meta(property='og:image' content='https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497')
+  meta(name='twitter:card' content='summary')
+  meta(name='twitter:title' content='Iniciar Sesión')
+  meta(name='twitter:description' content='La página para iniciar sesión')
+  meta(name='twitter:image' content='https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497')
+
+block append head
+  link(rel="stylesheet", href='/views/access/login/login.css')
+
+block content
+  //- include ../../components/captcha/captcha
+
+  section.full-page
+    .full-page__container
+      .card
+        h3 Iniciar sesión
+        form.form(method='POST', action='/ingresar')
+          .form__element
+            input#login-email.form__input(type='email', placeholder=' ', name='email' required)
+            label.form__label Correo electrónico
+          .form__element
+            input#login-pswd.form__input(type='password', placeholder=' ', onkeyup='return checkPassword()' name='pswd' required)
+            label.form__label Contraseña
+          p.text-status
+            span#upperCase  1 Letra mayúscula
+            span#length.text-status--right.margen-izquierdo  Min 8 caracteres
+          //- +captcha()
+          button#login-form-button.button(type='submit') Ingresar
+
+block append scripts
+  script(src='/views/access/login/login.js' defer)

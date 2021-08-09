@@ -1,0 +1,43 @@
+.layout-platform {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0px auto;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 8fr 0.5fr;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+}
+
+.layout-platform .header,
+.layout-platform .content,
+.layout-platform .footer {
+  background: #fff;
+  padding: 20px;
+}
+
+.layout-platform .header {
+  background: #00acda;
+  grid-area: header;
+}
+
+.layout-platform .content {
+  grid-area: content;
+}
+
+.layout-platform .footer {
+  background: #00acda;
+  grid-area: footer;
+}
+
+@media screen and (max-width: 768px) {
+  .layout-platform {
+    grid-template-areas:
+      'header'
+      'content'
+      'footer';
+  }
+}
