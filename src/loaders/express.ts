@@ -108,7 +108,7 @@ export async function startServer(): Promise<Express> {
 
   app.set('views', viewsDirectory)
   app.set('host', expressKeys.host)
-  app.set('port', expressKeys.port)
+  app.set('port', process.env.PORT || expressKeys.port)
   app.set('view engine', 'pug')
 
   app
