@@ -4,3 +4,7 @@ function showemail(e, data) {
   else if (autor !== null) console.log(autor)
   else console.log('no hay atributo')
 }
+
+function goToLink(link) {
+  return window.location.href = link;
+}

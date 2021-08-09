@@ -1,3 +1,6 @@
 .footer-block p {
   color: #fff;
+  font-size: 13px;
+  display: flex;
+  justify-content: flex-end;
 }

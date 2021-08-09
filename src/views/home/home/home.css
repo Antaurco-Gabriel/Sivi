@@ -1,0 +1,10 @@
+.home-container {
+  height: 100%;
+}
+
+.home-container p{
+  margin: auto;
+  font-size: 26px;
+  font-family: 'Nunito', sans-serif;
+}
+

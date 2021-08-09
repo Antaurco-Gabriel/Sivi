@@ -1,19 +1,17 @@
 extends ../../layouts/landing/landing
 
 block head
-  // link( rel='stylesheet', href='/views/components/card/card.css' )
+  link(rel="stylesheet", href='/views/home/home/home.css')
 
 block content
   include ../../components/card/card
-
-  p Content
-  +article-container()
-    each i in [ 1,2, 3]
-      +article(
-        'Titulo '+i,
-        'Autor '+i,
-        'Link '+i,
-        'Descripción '+i
+  .home-container
+    +card-container()
+      +card-link(
+        'Ficha de sintomatología',
+        '/sintomatologia',
+        '/public/images/doctor.svg'
       )
-    else
-      p No hay información que mostrar
+
+block append scripts
+  script(src='/views/home/home/home.js' defer)

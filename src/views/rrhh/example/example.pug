@@ -11,9 +11,9 @@ block content
   p vista del administrador
 
   #app
-    +article-container()
+    +card-container()
       .cards-content(v-for='( client, index ) in clients' :key='client.email')
-        +article()(
+        +card()(
           :title=`client.email`,
           :autor=`client.type`,
           :link=`'link-vue'`,
@@ -23,7 +23,7 @@ block content
 
       each i in [ 2,3 ]
         .cards-content 
-          +article(
+          +card(
             `titulo del card`,
             `autor del card`,
             `enlace-link-del-card`,
@@ -32,7 +32,7 @@ block content
           +modal(i, 'autor del card')
 
   .cards-content 
-    +article(
+    +card(
       `titulo del card fuerda del vue`,
       `autor del card`,
       `enlace-link-del-card`,

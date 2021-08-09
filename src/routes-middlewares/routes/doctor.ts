@@ -31,27 +31,10 @@
 import { Router, Response, Request } from 'express'
 import { managmentError } from '@Loaders/error'
 
-import { sendCaseExample } from '@Example/UseCase/example'
 
 export default (app: Router) => {
   app
-    .route('/admin-route')
-    .get((_req: Request, res: Response) => res.render('admin/panel/example'))
+    .route('/medico-route')
+    .get((_req: Request, res: Response) => res.render('doctor/panel/panel'))
 
-  app
-    .route('/example-form')
-    .get(async (_req: Request, res: Response) => {
-      // const { _id } = req.body;
-      const data = await sendCaseExample()
-      return res.render('admin/data-form', { data })
-    })
-    .post(async (req: Request, res: Response) => {
-      try {
-        // const { email } = req.body;
-        const users = await sendCaseExample()
-        return res.redirect(users)
-      } catch (error) {
-        managmentError(error, req, res)
-      }
-    })
 }

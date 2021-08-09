@@ -5,10 +5,10 @@ export function isLogged ( req: any, res:any, next:any){
     let route: string = '';
     switch(req.user.type){
       case 0: 
-        route = '/admin-route';
+        route = '/rrhh-route';
         break;
       case 1:
-        route = '/user-route';
+        route = '/medico-route';
         break;
       default:
         route = '/salir';

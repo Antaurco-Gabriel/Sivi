@@ -1,22 +1,27 @@
 style
   include ./card.css
 
-mixin article( title, autor, link, description )
-  article.article: .article-wrapper
-    h1.article__title(v-html!=attributes[':title'])=title
-    h2.article__sub-title(v-html!=attributes[':autor'])=autor
-    // a.article__link( href!=attributes[':link']||link v-html!=attributes[':link'])=link
-    a.article__link( href!=attributes[':link']||link) link-del-mixin
-    p.article__description(v-html!=attributes[':description'])=description
-    button.article__button( 
+mixin card( title, autor, link, description )
+  article.card: .card-wrapper
+    h1.card__title(v-html!=attributes[':title'])=title
+    h2.card__sub-title(v-html!=attributes[':autor'])=autor
+    a.card__link( href!=attributes[':link']||link target="_blank") Click aqui!
+    p.card__description(v-html!=attributes[':description'])=description
+    button.card__button( 
       :autor!=attributes[':autor'],
       onclick=`showemail(event,'${autor}')`
     ) button
     if block
       block
 
-mixin article-container(title, autor, description)
-  .article-container
+mixin card-link( title, link, img )
+  article.card.cursor-pointer(onclick=`goToLink('${link}')`)
+    .card__title
+      span(v-html!=attributes[':title'])=title
+    img.card__img(src=`${img}`, alt="img-card")
+
+mixin card-container(title, autor, description)
+  .card-container
     if block
       block
 

@@ -30,7 +30,9 @@ import { router } from '@Loaders/express'
 
 import home from './routes/home'
 import access from './routes/access'
-import routeExample from './routes/admin'
+import rrhh from './routes/rrhh'
+import employee from './routes/employee'
+import doctor from './routes/doctor'
 import apiExample from './routes-components/api.example'
 import apiAdmin from './routes-components/admin.api'
 
@@ -39,9 +41,11 @@ export default () => {
 
   home(app)
   access(app)
-  routeExample(app)
+  rrhh(app)
   apiExample(app)
   apiAdmin(app)
+  employee(app)
+  doctor(app)
 
   return app
 }

@@ -46,8 +46,8 @@ export default (app: router) => {
         const user = await login(email, pswd)
 
         const USERS_ROUTES: Object = {
-          0: '/admin-route',
-          1: '/client-route',
+          0: '/rrhh-route',
+          1: '/medico-route',
         }
 
         const DEFAULT_ROUTE: string = '/'
