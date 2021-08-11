@@ -11,14 +11,16 @@ html
     link( rel='shorcut icon', href='#' )
     link( rel='stylesheet', href='/public/css/normalize.min.css' )
     link( rel='stylesheet', href='/public/css/globals.css' )
+    link(rel='stylesheet' href='/public/css/fontawesome-all.css')
+    link( rel='stylesheet', href='/public/css/bootstrap-grid.min.css' )
     link( rel='stylesheet', href='/views/layouts/platform/main.css' )
 
     block head
 
     block scripts
   body.layout-platform
-    include ../../components/flash/flash
     include ../../components/header/header
+    include ../../components/flash/flash
     .header
       +header()
         a(href='/salir') Salir

@@ -10,6 +10,7 @@ html
 
     link( rel='shorcut icon', href='#' )
     link( rel='stylesheet', href='/public/css/normalize.min.css' )
+    link(rel='stylesheet' href='/public/css/fontawesome-all.css')
     link( rel='stylesheet', href='/public/css/globals.css' )
     link( rel='stylesheet', href='/views/layouts/landing/landing.css' )
     block head
@@ -18,6 +19,7 @@ html
 
   body.container
     include ../../components/header/header
+    include ../../components/flash/flash
     .header
       +header()
         a(href='/ingresar') Iniciar sesión
