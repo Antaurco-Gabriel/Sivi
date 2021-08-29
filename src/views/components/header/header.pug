@@ -2,10 +2,15 @@ style
   include ./header.css
 
 mixin header()
-  header.header-block
+  header.header-block(id="myTopnav")
     a(href='/') SIVI 
     .links
       if block
         block
-      // -else
+      //- else
         p No content provided
+    a.icon(href='javascript:void(0);' onclick='navbar()')
+      i.fa.fa-bars
+
+script
+  include ./header.js

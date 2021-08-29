@@ -1,7 +1,240 @@
-/* #app { */
-/*   display: grid; */
-/*   gap: 1rem; */
-/*   grid-auto-flow: dense; */
-/*   grid-auto-rows: 22rem; */
-/*   grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr)); */
-/* } */
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;500&display=swap');
+
+/*
+  bloque-nombre
+  bloque-nombre__elemento-nombre
+  bloque-nombre--modificador-nombre
+*/
+
+/* table-section BLOCK */
+.table-section {
+  display:flex;
+  flex-direction: column;
+}
+
+/* table-table-section-BLOCK */
+.table-table-section {
+  overflow-x:auto;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(160px,1fr);
+  grid-gap: 16px;
+  display: grid;
+}
+  .table-table-section__table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    font-family: 'Exo', sans-serif;
+    text-align: center;
+  }
+  .table-table-section__table thead tr {
+    background-color: #00acda;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 500;
+  }
+  .table-table-section__table th,
+  .table-table-section__table td {
+      padding: 16px 10px;
+  }
+  .table-table-section__table tbody {
+    border-right: 2px solid #e4e4e4;
+    border-left: 2px solid #e4e4e4;
+  }
+  .table-table-section__table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  .table-table-section__table tbody tr:nth-child(even) {
+    color: #424242;
+  }
+  .table-table-section__table tbody tr:nth-child(odd) {
+    color: #424242;
+  }
+  .table-table-section__table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  .table-table-section__table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+  }
+  .table-table-section__table tbody tr:last-of-type {
+    border-bottom: 2px solid #00acda;
+  }
+  .table-table-section__image-img {
+    object-fit: contain;
+  }
+  .table-table-section__text-capitalize {
+    text-transform: capitalize;
+  }
+
+  @media screen and (max-width: 750px) {
+    .table-table-section__table thead {
+        display: none;
+      }
+    .table-table-section__table td {
+        display: block;
+      }
+    
+    .table-table-section__table  td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 80px;
+    }
+
+    .table-table-section__table--options {
+      display: block !important;
+      padding-left: 16px !important;
+      justify-content: center !important;
+    }
+
+    .table-table-section__table td:before {
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      margin: auto;
+      color: #00acda;
+      font-weight: 500;
+    }
+
+    .table-table-section__table  td:nth-of-type(1):before {  content: "Fecha de reporte de síntomas"; }
+    .table-table-section__table  td:nth-of-type(2):before { content: "Hora de reporte de síntomas"; }
+    .table-table-section__table  td:nth-of-type(3):before { content: "Nombres y Apellidos"; }
+    .table-table-section__table  td:nth-of-type(4):before { content: "DNI"; }
+    .table-table-section__table  td:nth-of-type(5):before { content: "Diagnósticos presuntivos"; }
+    .table-table-section__table  td:nth-of-type(6):before { content: "Tratamiento"; }
+    .table-table-section__table  td:nth-of-type(7):before { content: "Proximo seguimiento"; }
+    .table-table-section__table  td:nth-of-type(8):before { content: "Periodo restante de cuarentena"; }
+  }
+
+
+/* table-pagination-section BLOCK*/
+.table-pagination-section {
+  position: relative;
+  text-align: center;
+  margin: 36px 0;
+  font-family: 'Exo', sans-serif;
+  align-self: center;
+}
+
+/* table-pagination BLOCK*/
+.table-pagination {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+  .table-pagination > li > a{
+    border: none;
+    border-radius: 30px !important;
+    color: white;
+    background-color: #00acda;
+    margin: 4px;
+    position: relative; 
+    display: block;
+    padding: 0.75rem 1.15rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    min-width: 42px;
+  }
+  .table-pagination > li > a:hover{
+    background-color: #3e3e3e;
+  }
+  .table-pagination .active > a,
+  .table-pagination .active > a:hover,
+  .table-pagination .active > a:focus,
+  .table-pagination .active > span:hover,
+  .table-pagination .active > span:focus {
+    background-color: #3e3e3e;
+  }
+  .table-pagination .table-pagination__page {
+    background-color: #ff99004d;
+  }
+  .table-pagination .table-pagination__page--firt {
+    margin-right: 16px;
+  }
+  .table-pagination .table-pagination__page--last {
+    margin-left: 16px;
+  }
+
+/* table-filter-section BLOCK */
+.table-filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+  .table-filter-section__button {
+    background-color: #3c3c3c;
+    height: 32px;
+    min-width: 100px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    color: #f3f3f3;
+    font-family: 'Exo', sans-serif;
+    margin: 8px;
+    cursor: pointer;
+  }
+  .table-filter-section__button--active {
+    background-color: #00acda;
+  }
+  .table-filter-section__text {
+    margin: 8px;
+    text-transform: capitalize;
+  }
+
+.body-profile {
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+
+.title-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+  .title-component__title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #3e3e3e;
+  }
+  .title-component__line {
+    width: 100px;
+    height: 6px;
+    background: #00acda;
+    border-radius: 20px;
+    margin-top: 5px;
+  }
+
+p {
+  margin: 0;
+}
+
+.custom-button {
+  background: var(--first-color);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 36px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 22px;
+  transition: 0.3s ease all;
+  font-size: var(--normal-font-size);
+  text-decoration: none;
+}
+
+.custom-button:hover {
+  background: #116be0;
+}

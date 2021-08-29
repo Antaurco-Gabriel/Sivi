@@ -1,12 +1,65 @@
 extends ../../layouts/platform/main
 
 block head
-  link( rel='stylesheet', href='/views/admin/panel/panel.css' )
+  link( rel='stylesheet', href='/views/rrhh/panel/panel.css' )
+  link( rel='stylesheet', href='/views/rrhh/panel/loader.css' )
+  script(src="https://unpkg.com/vue@next")
 
 block content
 
-  p Vista de R.R.H.H.
+  section.table-section(id="table" data-sheets=sheets)
+    .loader-section(:style="{'display': display}")
+      .loader-section__animation
+        span
+        span
+        span
+    .body-profile
+      .title-component
+        .title-component__title Fichas Sintomatológicas
+        .title-component__line
+      .table-table-section.my-3(v-if="displayedData.length>0")
+        table.table-table-section__table
+          thead
+            tr
+              td(scope="col") Fecha de reporte de síntomas
+              td(scope="col") Hora de reporte de síntomas
+              td(scope="col") Nombres y Apellidos
+              td(scope="col") DNI
+              td(scope="col") Diagnósticos presuntivos
+              td(scope="col") Tratamiento
+              td(scope="col") Proximo seguimiento
+              td(scope="col") Periodo restante de cuarentena
+              td(scope="col") Opciones
+          tbody
+            tr(v-for="(data, index) in displayedData" :key="data._id")
+              td(scope="col") {{data.formatDate}}
+              td(scope="col") {{data.formatHours}}
+              td(scope="col") {{data.fullName}}
+              td(scope="col") {{data.dni}}
+              td(scope="col") {{data.preDiagnosis}}
+              td(scope="col") {{data.treatment}}
+              td(scope="col") {{data.dateNextFollowUp}}
+              td(scope="col") {{data.quarantinePeriod}}
+              td.table-table-section__table--options(scope="col")
+                button.custom-button.buttons-component__button(type="button" @click="confirmDelete(data._id)") Eliminar
+      
+      .table-pagination-section(v-else)
+        h3(style="color:white; font-weight: 400;") No hay empleados con fichas positivas
+
+      .table-pagination-section(v-if="displayedData.length>0")
+        ul.table-pagination
+          li
+            a.table-pagination__page.table-pagination__page--firt(v-if="page != 1 && page >= 4" @click="page = 1") {{pages[0]}}
+          li
+            a(v-if="page != 1" @click="page--")
+              span(aria-hidden='true') &laquo;
+          li(:class="page == pageNumber? 'active':'' " v-for="pageNumber in pages.slice(page==1?page-1: page==2?page-2:page-3, page==1?page+3:page+2)" @click="page = pageNumber" :key="pageNumber")
+            a() {{pageNumber}}
+          li
+            a(v-if="page < pages.length" @click="page++")
+              span(aria-hidden='true') &raquo;
+          li
+            a.table-pagination__page.table-pagination__page--last(v-if="page != pages.length && page <= pages.length - 3" @click="page = pages.length") {{pages.length}}
 
 block scripts
-  //- script(src="https://unpkg.com/vue@next")
-  //- script(defer src="/views/admin/panel/panel.vue.js")
+  script(defer src="/views/rrhh/panel/panel.vue.js")

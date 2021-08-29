@@ -6,21 +6,32 @@ html
     meta( name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' )
     block meta
 
-    title #{title || 'Landing Framework'} 
+    title #{title || 'Framework'} 
 
     link( rel='shorcut icon', href='#' )
     link( rel='stylesheet', href='/public/css/normalize.min.css' )
+    link(rel='stylesheet' href='/public/css/fontawesome-all.css')
     link( rel='stylesheet', href='/public/css/globals.css' )
+    link( rel='stylesheet', href='/public/css/bootstrap-grid.min.css' )
     link( rel='stylesheet', href='/views/layouts/landing/landing.css' )
     block head
 
     block scripts
 
-  body.container
+  body.container-landing
     include ../../components/header/header
+    include ../../components/flash/flash
     .header
       +header()
-        a(href='/ingresar') Iniciar sesión
+        if user
+          if user.type === 0
+            a(href="/rrhh/panel") Fichas Sintomatológicas
+            a(href='/salir') Cerrar sesión
+          if user.type === 1
+            a(href="/medico/panel") Fichas Sintomatológicas
+            a(href='/salir') Cerrar sesión
+        else
+          a(href='/ingresar') Iniciar sesión
     .content 
       block content
 
