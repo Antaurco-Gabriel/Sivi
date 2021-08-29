@@ -30,11 +30,34 @@
 
 import { Router, Response, Request } from 'express'
 import { managmentError } from '@Loaders/error'
+import { deleteSheet, getPositiveSheets } from 'services/Rrhh/UseCase/symptomatology'
+import { isLogged, isRRHH } from '@Routes/middlewares/routeAccess'
 
 
 export default (app: Router) => {
   app
-    .route('/rrhh-route')
-    .get((_req: Request, res: Response) => res.render('rrhh/panel/panel'))
+    .route('/rrhh/panel')
+    .get(isRRHH, async (req: any, res: Response): Promise<void> => {
+      try {
+        const sheets = await getPositiveSheets(req.user.company);
+        res.render('rrhh/panel/panel', {sheets: sheets})
+      } catch (error) {
+        return managmentError(error, req, res);
+      }
+    })
+  
+  app
+    .route('/rrhh/eliminar-ficha/:id')
+    .delete(isRRHH, async (req: any, res: Response): Promise<void> => {
+      try {
+        const {id} = req.params
+
+        const sheetRemoved = await deleteSheet(id);
+        
+        res.send(sheetRemoved);
+      } catch (error) {
+        return managmentError(error, req, res);
+      }
+    })
 
 }

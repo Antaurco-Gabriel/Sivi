@@ -18,10 +18,41 @@ export class Mongo {
     try{
       const database = getConection();
       const collection = database.collection('companies');
-      let company = await collection.find({
+      
+      const company = await collection.aggregate([
+        {
+          $match: {_id: new ObjectID(id)}
+        },
+        {
+          '$lookup': {
+            'from': 'users',
+            'localField': 'rrhh',
+            'foreignField': '_id',
+            'as': 'rrhh'
+          }
+        },
+        { '$unwind': { path: '$rrhh' } },
+        {
+          '$lookup': {
+            'from': 'users',
+            'localField': 'doctor',
+            'foreignField': '_id',
+            'as': 'doctor'
+          }
+        },
+        { '$unwind': { path: '$doctor' } },
+        { '$project': {
+            'name': 1,
+            'rrhh': { email: 1 },
+            'doctor': { email: 1}
+        }},
+      ]).toArray();
+      return company;
+
+      /* let company = await collection.find({
         _id: new ObjectID(id),
       }, { }).toArray();
-      return company;
+      return company; */
     }catch(error){
       throw managmentMongoError(error);
     }

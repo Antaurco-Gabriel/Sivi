@@ -1,0 +1,112 @@
+extends ../../layouts/platform/main
+
+block head
+  link( rel='stylesheet', href='/views/doctor/medical-follow-up/medical-follow-up.css' )
+  link( rel='stylesheet', href='/views/doctor/medical-follow-up/loader.css' )
+  script(src="https://unpkg.com/vue@next")
+
+block content
+
+  section.table-section(id="sheet", data-sheet=sheet, data-medical-follow-up=medicalFollowUps)
+    .loader-section(:style="{'display': display}")
+      .loader-section__animation
+        span
+        span
+        span
+    .body-profile
+      .title-component
+        .title-component__title Lista de seguimientos
+        .title-component__line
+      .row.body-component
+        .body-profile__details.col-md-10
+          .row.my-2.px-3
+            span(style="font-size: 20px; font-weight: 500") Datos del paciente
+          .row.justify-content-center.mb-3
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='registerDate') Fecha de reporte de síntomas:
+                input#registerDate.mb-2.form-control(type='text', placeholder='', name="registerDate", v-model="sheetData.formatDate", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='registerHours') Hora de reporte de síntomas:
+                input#registerHours.mb-2.form-control(type='text', placeholder='', name="registerHours", v-model="sheetData.formatHours", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='company') Empresa:
+                input#company.mb-2.form-control(type='text', placeholder='', name="company", v-model="sheetData.company", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='fullname') Nombres y Apellidos:
+                input#fullname.mb-2.form-control(type='text', placeholder='', name="fullname", v-model="sheetData.fullName", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='dni') DNI:
+                input#dni.mb-2.form-control(type='text', placeholder='', name="dni", v-model="sheetData.dni", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='numberPhone') Número de teléfono:
+                input#numberPhone.mb-2.form-control(type='text', placeholder='', name="numberPhone", v-model="sheetData.numberPhone", readOnly)
+          .row.justify-content-center.mb-3
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='preDiagnosis') Diagnóstico presuntivo:
+                input#preDiagnosis.mb-2.form-control(type='text', placeholder='', name="preDiagnosis", v-model="sheetData.preDiagnosis", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='treatment') Tratamiento:
+                input#treatment.mb-2.form-control(type='text', placeholder='', name="treatment", v-model="sheetData.treatment", readOnly)
+            .col-md-4
+              .row.p-3
+                label.mb-2.custom-label(for='quarantinePeriod') Periodo restante de cuarentena:
+                input#quarantinePeriod.mb-2.form-control(type='text', placeholder='', name="quarantinePeriod", v-model="sheetData.quarantinePeriod", readOnly)
+      .row.buttons-component.my-3
+        button.custom-button.buttons-component__button(type='button' @click=`goToFollowUp(sheetData._id)`) Realizar nuevo seguimiento
+
+      .table-table-section.my-3(v-if="displayedData.length>0")
+        table.table-table-section__table
+          thead
+            tr
+              td(scope="col") Fecha
+              td(scope="col") Hora
+              td(scope="col") Diagnósticos presuntivos
+              td(scope="col") Tratamiento
+              td(scope="col") Proximo seguimiento
+              td(scope="col") Periodo de cuarentena
+              td(scope="col") Opciones
+          tbody
+            tr(v-for="(data, index) in displayedData" :key="data._id")
+              td(scope="col") {{data.registerDate}}
+              td(scope="col") {{data.registerHours}}
+              td(scope="col") {{data.preDiagnosis}}
+              td(scope="col") {{data.treatment}}
+              td(scope="col") {{data.dateNextFollowUp}}
+              td(scope="col") {{data.quarantinePeriod}}
+              td.table-table-section__table--options(scope="col")
+                .dropdown
+                  button.dropbtn(@click='dropdownButton(index)') Opciones
+                  .dropdown-content(:id=`'myDropdown-'+index`)
+                    a(:href=`'/medico/ver-seguimiento/' + data._id`) Ver detalle
+                    a(:href=`'/medico/editar-seguimiento/' + data._id`) Editar
+                    //- a(href='#') Eliminar
+
+      .table-pagination-section(v-else)
+        h3(style="color:white; font-weight: 400;") No hay seguimientos medicos creados
+
+      .table-pagination-section(v-if="displayedData.length>0")
+        ul.table-pagination
+          li
+            a.table-pagination__page.table-pagination__page--firt(v-if="page != 1 && page >= 4" @click="page = 1") {{pages[0]}}
+          li
+            a(v-if="page != 1" @click="page--")
+              span(aria-hidden='true') &laquo;
+          li(:class="page == pageNumber? 'active':'' " v-for="pageNumber in pages.slice(page==1?page-1: page==2?page-2:page-3, page==1?page+3:page+2)" @click="page = pageNumber" :key="pageNumber")
+            a() {{pageNumber}}
+          li
+            a(v-if="page < pages.length" @click="page++")
+              span(aria-hidden='true') &raquo;
+          li
+            a.table-pagination__page.table-pagination__page--last(v-if="page != pages.length && page <= pages.length - 3" @click="page = pages.length") {{pages.length}}
+
+
+block scripts
+  script(defer src="/views/doctor/medical-follow-up/medical-follow-up.vue.js")

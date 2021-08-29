@@ -21,15 +21,13 @@ export default (app: Router) => {
         const isChecked = await isCheckedToday(data)
 
         if(!isChecked){
+          const diagnosis = isPositive(data);
+          data.isPositive = diagnosis; 
           const sheetSymp =  await createSymptomatology(data);
-          const diagnosis = isPositive(sheetSymp);
           
           if (diagnosis) {
             const companyData = await getCompany(data.company);
-            const emailRrhh = await getRrhhEmail(data.company);
-            const emailDoctor = await getDoctorEmail();
-
-            await sendMails(emailRrhh, emailDoctor, sheetSymp, companyData[0]);
+            await sendMails(sheetSymp, companyData[0]);
 
             req.session['message'] = {
               type: 'warning',

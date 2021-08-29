@@ -15,3 +15,47 @@
   text-decoration: #fff;
   font-family: 'Nunito', sans-serif;
 }
+
+.header-block .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .header-block .links {display: none;}
+  .header-block a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-block.responsive {
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .header-block.responsive .links a {
+    margin: 8px 0;
+    color: rgb(0 172 218);
+  }
+
+  .header-block.responsive {position: relative;}
+  .header-block.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .header-block.responsive .links {
+    float: none;
+    display: flex;
+    margin: 16px 0 0;
+    flex-direction: column;
+    text-align: end;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 16px;
+  }
+}

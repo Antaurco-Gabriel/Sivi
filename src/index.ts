@@ -35,7 +35,7 @@ async function startProyect() {
     console.clear()
     console.log(`
       ########################################
-      ║ 🦙     Framework Beta v0.11.4    🦙 ║
+      ║ 🦙 Starter Framework Beta v0.11.4 🦙 ║
       ########################################`)
 
     await connect()

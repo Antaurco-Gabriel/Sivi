@@ -1,4 +1,4 @@
-.container {
+.container-landing {
   min-height: 100vh;
   width: 100%;
   margin: 0px auto;
@@ -12,24 +12,24 @@
     'footer';
 }
 
-.container .header,
-.container .content,
-.container .sidebar,
-.container .footer {
+.container-landing .header,
+.container-landing .content,
+.container-landing .sidebar,
+.container-landing .footer {
   background: #fff;
   padding: 20px;
 }
 
-.container .header {
+.container-landing .header {
   background: #00acda;
   grid-area: header;
 }
 
-.container .content {
+.container-landing .content {
   grid-area: contenido;
 }
 
-.container .sidebar {
+.container-landing .sidebar {
   background: #faa43d;
   text-align: center;
   display: flex;
@@ -39,8 +39,8 @@
   grid-area: sidebar;
 }
 
-.container .widget-1,
-.container .widget-2 {
+.container-landing .widget-1,
+.container-landing .widget-2 {
   background: #55a8fd;
   color: #fff;
   height: 100%;
@@ -50,21 +50,21 @@
   justify-content: center;
 }
 
-.container .widget-1 {
+.container-landing .widget-1 {
   grid-area: widget-1;
 }
 
-.container .widget-2 {
+.container-landing .widget-2 {
   grid-area: widget-2;
 }
 
-.container .footer {
+.container-landing .footer {
   background: #00acda;
   grid-area: footer;
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  .container-landing {
     grid-template-areas:
       'header'
       'contenido'

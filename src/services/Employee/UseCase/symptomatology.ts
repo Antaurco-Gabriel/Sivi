@@ -14,7 +14,7 @@ export async function getAllCompanies(): Promise<any> {
 export async function getCompany(id: any): Promise<any> {
   try{
     const company = await repository.findCompany(id);
-    
+
     return company;
   }catch(error){
     throw error;
@@ -76,7 +76,7 @@ export async function createSymptomatology(data: any): Promise<any> {
   }
 }
 
-export async function sendMails(emailRrhh: any, emailDoctor: any, sheetData: any, companyData: any): Promise<any> {
+export async function sendMails(sheetData: any, companyData: any): Promise<any> {
   try { 
     const subject = 'SIVI - Resultado Ficha Sintomatológica';
     const textRrhh = `Hola,\n\n
@@ -92,8 +92,8 @@ export async function sendMails(emailRrhh: any, emailDoctor: any, sheetData: any
             El equipo de SIVI`;
 
     // Send email
-    await mailerService(emailRrhh, subject, textRrhh);
-    await mailerService(emailDoctor, subject, textDoctor);
+    await mailerService(companyData.rrhh.email, subject, textRrhh);
+    await mailerService(companyData.doctor.email, subject, textDoctor);
 
   }catch(error){
     throw error;

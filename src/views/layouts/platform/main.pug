@@ -13,6 +13,7 @@ html
     link( rel='stylesheet', href='/public/css/globals.css' )
     link(rel='stylesheet' href='/public/css/fontawesome-all.css')
     link( rel='stylesheet', href='/public/css/bootstrap-grid.min.css' )
+    link(rel="stylesheet", href='/public/css/plugins/sweetalert2.min.css')
     link( rel='stylesheet', href='/views/layouts/platform/main.css' )
 
     block head
@@ -23,8 +24,20 @@ html
     include ../../components/flash/flash
     .header
       +header()
-        a(href='/salir') Salir
+        if user
+          if user.type === 0
+            a(href="/rrhh/panel") Fichas Sintomatológicas
+            a(href='/salir') Cerrar sesión
+          if user.type === 1
+            a(href="/medico/panel") Fichas Sintomatológicas
+            a(href='/salir') Cerrar sesión
+        else
+          a(href='/ingresar') Iniciar sesión
     .content
       block content
     .footer
       include ../../components/footer/footer
+
+    script(src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js")
+    //axios
+    script(type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js')
