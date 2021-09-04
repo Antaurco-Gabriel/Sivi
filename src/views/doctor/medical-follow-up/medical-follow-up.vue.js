@@ -26,7 +26,8 @@ const sheetData = Vue.createApp({
       sheet.company = sheet.company.name;
       sheet.preDiagnosis = sheet.preDiagnosis ? sheet.preDiagnosis : 'Pendiente';
       sheet.treatment = sheet.treatment ? sheet.treatment : 'Pendiente';
-      sheet.quarantinePeriod = sheet.quarantinePeriod ? sheet.quarantinePeriod : 'Pendiente';
+      sheet.quarantinePeriod = sheet.quarantinePeriod ? parseInt(sheet.quarantinePeriod) - Math.floor((new Date() - new Date(sheet.dateQuarantine)) / (1000 * 3600 * 24)) : 'Pendiente';
+      // sheet.quarantinePeriod = sheet.quarantinePeriod ? sheet.quarantinePeriod : 'Pendiente';
       this.sheetData = sheet;
 
       const dataFollowUp = JSON.parse(document.getElementById("sheet").getAttribute("data-medical-follow-up"));

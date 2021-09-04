@@ -71,11 +71,11 @@ block content
           .row.justify-content-center.mb-3
             .col-md-4
               .row.p-3
-                label.mb-2.custom-label(for='minutes') Tiempo (min):
+                label.mb-2.custom-label(for='minutes') Duración de llamada (min):
                 input#minutes.mb-2.form-control(type='text', placeholder='' name="minutes" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxLength="3" required)
             .col-md-8
               .row.p-3
-                label.mb-2.custom-label(for='contactCovid') ¿Contacto con persona con un caso confirmado de COVID-19?
+                label.mb-2.custom-label(for='contactCovid') ¿Contacto con un caso confirmado de COVID-19?
                 select#contactCovid.custom-select(name='contactCovid' required)
                       option(value='') -- Elegir --
                       option(value='0') No
@@ -141,7 +141,7 @@ block content
             .col-md-6
               .row.p-3
                 label.mb-2.custom-label(for='dateQuarantine') Fecha de inicio de cuarentena:
-                input#dateQuarantine.mb-2.form-control(type="date", placeholder='', name="dateQuarantine", v-model="today" ,required)
+                input#dateQuarantine.mb-2.form-control(type="date", placeholder='', name="dateQuarantine", v-model="initQuarantine" ,required)
             .col-md-6
               .row.p-3
                 label.mb-2.custom-label(for='treatmentComments') Comentarios sobre tratamiento:
