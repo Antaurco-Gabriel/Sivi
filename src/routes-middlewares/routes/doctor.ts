@@ -78,7 +78,7 @@ export default (app: Router) => {
         data.idSheet = id;
 
         const newFollowUp =  await createMedicalFollowUp(data);
-        const updatedSheet = await updateSheet(id, data.preDiagnosis, data.treatment, data.quarantinePeriod, data.dateNextFollowUp);
+        const updatedSheet = await updateSheet(id, data);
         
         return res.redirect('/medico/lista-seguimientos/' + id)
 
@@ -115,7 +115,7 @@ export default (app: Router) => {
         const data = req.body;
 
         const editedFollowUp =  await updateMedicalFollowUp(data);
-        const updatedSheet = await updateSheet(data.idSheet, data.preDiagnosis, data.treatment, data.quarantinePeriod, data.dateNextFollowUp);
+        const updatedSheet = await updateSheet(data.idSheet, data);
         
         return res.redirect('/medico/lista-seguimientos/' + data.idSheet)
 

@@ -42,11 +42,17 @@ export async function updateMedicalFollowUp(data: any): Promise<any> {
   }
 }
 
-export async function updateSheet(id: any, preDiagnosis:any, treatment: any, quarantinePeriod:any, dateNextFollowUp: any): Promise<any> {
+export async function updateSheet(id: any, data: any): Promise<any> {
   try{  
 
-    dateNextFollowUp = new Date(dateNextFollowUp);
-    const result = await repository.updateSheet(id, preDiagnosis, treatment, quarantinePeriod, dateNextFollowUp);    
+    data.dateNextFollowUp = new Date(data.dateNextFollowUp);
+    const today:any = new Date();
+    // const registerDate:any = new Date(data.registerDate);
+    const quarantinePeriodRest = parseInt(data.quarantinePeriod) - Math.floor((today - data.dateQuarantine) / (1000 * 3600 * 24));
+    // console.log(data.dateQuarantine, registerDate, Math.floor((registerDate - data.dateQuarantine) / (1000 * 3600 * 24)), parseInt(data.quarantinePeriod))
+
+
+    const result = await repository.updateSheet(id, data.preDiagnosis, data.treatment, data.quarantinePeriod, data.dateNextFollowUp, data.dateQuarantine);    
 
     return result;
   }catch(error){

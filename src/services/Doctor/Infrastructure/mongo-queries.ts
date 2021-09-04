@@ -109,7 +109,7 @@ export class Mongo {
   }
 
 
-  public async updateSheet(id: any, preDiagnosis:any, treatment: any, quarantinePeriod:any, dateNextFollowUp: any): Promise<any>{
+  public async updateSheet(id: any, preDiagnosis:any, treatment: any, quarantinePeriod:any, dateNextFollowUp: any, dateQuarantine: any): Promise<any>{
     try{
       const database = getConection();
       const collection = database.collection('sheets');
@@ -122,6 +122,7 @@ export class Mongo {
             treatment: treatment,
             quarantinePeriod: quarantinePeriod,
             dateNextFollowUp: dateNextFollowUp,
+            dateQuarantine: dateQuarantine,
           }
       })
 

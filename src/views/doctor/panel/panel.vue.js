@@ -27,7 +27,8 @@ const tableData = Vue.createApp({
         sheet.preDiagnosis = sheet.preDiagnosis ? sheet.preDiagnosis : 'Pendiente';
         sheet.treatment = sheet.treatment ? sheet.treatment : 'Pendiente';
         sheet.dateNextFollowUp = sheet.dateNextFollowUp ? this.formatDate(sheet.dateNextFollowUp) : 'Pendiente';
-        sheet.quarantinePeriod = sheet.quarantinePeriod ? sheet.quarantinePeriod : 'Pendiente';
+        sheet.quarantinePeriod = sheet.quarantinePeriod ? parseInt(sheet.quarantinePeriod) - Math.floor((new Date() - new Date(sheet.dateQuarantine)) / (1000 * 3600 * 24)) : 'Pendiente';
+        // sheet.quarantinePeriod = sheet.quarantinePeriod ? sheet.quarantinePeriod : 'Pendiente';
       }
   
       this.dataOrigin = dataSheets
