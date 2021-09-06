@@ -41,7 +41,7 @@ export default (app: Router) => {
       try {
         const sheets = await getPositiveSheets(req.user.company);
         res.render('rrhh/panel/panel', {sheets: sheets})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -55,7 +55,7 @@ export default (app: Router) => {
         const sheetRemoved = await deleteSheet(id);
         
         res.send(sheetRemoved);
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })

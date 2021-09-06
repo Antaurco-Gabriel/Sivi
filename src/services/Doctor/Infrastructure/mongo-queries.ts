@@ -24,7 +24,7 @@ export class Mongo {
       ]).toArray();
 
       return sheets;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -51,7 +51,7 @@ export class Mongo {
       ]).toArray();
       
       return sheet;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -65,7 +65,7 @@ export class Mongo {
 
       let newFollowUp = await collection.insertOne(data);
       return newFollowUp.ops[0];
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -103,7 +103,7 @@ export class Mongo {
       })
 
       return updatedFollowUp;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -127,7 +127,7 @@ export class Mongo {
       })
 
       return updatedSheet;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -149,7 +149,7 @@ export class Mongo {
       } ).toArray();
 
       return medicalFollowUps;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -186,7 +186,7 @@ export class Mongo {
       ]).toArray();
       
       return medicalFollowUp;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }

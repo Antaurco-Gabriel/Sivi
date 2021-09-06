@@ -21,7 +21,7 @@ export class Mongo {
       console.log(users[0])
       console.log(typeof users)
       return users
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -40,7 +40,7 @@ export class Mongo {
           },
         }
       )
-    } catch (error) {
+    } catch (error:any) {
       managmentMongoError(error)
     }
   }
@@ -62,7 +62,7 @@ export class Mongo {
         }
       )
       return user
-    } catch (error) {
+    } catch (error:any) {
       managmentMongoError(error)
     }
   }

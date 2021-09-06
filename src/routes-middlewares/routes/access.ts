@@ -81,7 +81,7 @@ export default (app: router) => {
           }
           return res.redirect(route)
         })
-      } catch (error) {
+      } catch (error:any) {
         managmentError(error, req, res)
       }
     })
@@ -104,7 +104,7 @@ export default (app: router) => {
           }
           return res.redirect('/mis-cursos')
         })
-      } catch (error) {
+      } catch (error:any) {
         managmentError(error, req, res)
       }
     })

@@ -10,7 +10,7 @@ export default (app: Router) => {
       try {
         const data = await getAllCompanies()
         res.render('employee/symptomatology/symptomatology', {symptomatology: data})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, _req, res);
       }
     })
@@ -48,7 +48,7 @@ export default (app: Router) => {
         
         return res.redirect('/')
 
-      } catch (error) {
+      } catch (error:any) {
         managmentError(error, req, res);
       }
     })
