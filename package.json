@@ -5,12 +5,12 @@
   "main": "index.ts",
   "scripts": {
     "deploy": "npm run install:prod && npm run build:prod && npm run clean:prod && npm run install:deploy && npm run start:deploy",
-    "install:prod": "npm install --no-save cypress nodemon livereload connect-livereload",
+    "install:prod": "npm install --no-save nodemon livereload connect-livereload",
     "build:prod": "ttsc && copyfiles -u 1 src/views/**/* src/public/**/* build/src/",
-    "clean:prod": "rm -r node_modules && rm -r cypress",
+    "clean:prod": "rm -r node_modules && rm -r",
     "install:deploy": "npm install --production",
     "start:deploy": "node build/src",
-    "install:dev": "npm install --no-save cypress",
+    "install:dev": "npm install --no-save",
     "dev": "nodemon"
   },
   "repository": {
