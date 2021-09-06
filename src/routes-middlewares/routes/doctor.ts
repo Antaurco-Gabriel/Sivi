@@ -42,7 +42,7 @@ export default (app: Router) => {
       try {
         const sheets = await getAllPositiveSheets();
         res.render('doctor/panel/panel',{sheets: sheets})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -55,7 +55,7 @@ export default (app: Router) => {
         const sheet = await getSheet(id);
         const medicalFollowUps = await getMedicalFollowUps(id);
         res.render('doctor/medical-follow-up/medical-follow-up', {sheet: sheet, medicalFollowUps: medicalFollowUps})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -67,7 +67,7 @@ export default (app: Router) => {
         const {id} = req.params
         const sheet = await getSheet(id);
         res.render('doctor/create-medical-follow-up/create-medical-follow-up', {sheet: sheet})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -82,7 +82,7 @@ export default (app: Router) => {
         
         return res.redirect('/medico/lista-seguimientos/' + id)
 
-      } catch (error) {
+      } catch (error:any) {
         managmentError(error, req, res);
       }
     })
@@ -94,7 +94,7 @@ export default (app: Router) => {
         const {id} = req.params
         const medicalFollowUp = await getMedicalFollowUp(id);
         res.render('doctor/view-medical-follow-up/view-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -106,7 +106,7 @@ export default (app: Router) => {
         const {id} = req.params
         const medicalFollowUp = await getMedicalFollowUp(id);
         res.render('doctor/edit-medical-follow-up/edit-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
-      } catch (error) {
+      } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
@@ -119,7 +119,7 @@ export default (app: Router) => {
         
         return res.redirect('/medico/lista-seguimientos/' + data.idSheet)
 
-      } catch (error) {
+      } catch (error:any) {
         managmentError(error, req, res);
       }
     })

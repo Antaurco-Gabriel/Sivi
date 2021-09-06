@@ -12,7 +12,7 @@ export class Mongo {
         isPositive: true,
       }, { }).toArray();
       return sheets;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -25,7 +25,7 @@ export class Mongo {
         _id: new ObjectID(id),
       })
       return sheet;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }

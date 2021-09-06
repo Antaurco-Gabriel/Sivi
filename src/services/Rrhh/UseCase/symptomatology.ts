@@ -6,7 +6,7 @@ export async function getPositiveSheets(idCompany: any): Promise<any> {
     const sheets = await repository.findPositiveSheets(idCompany);
     
     return sheets;
-  }catch(error){
+  }catch(error:any){
     throw error;
   }
 }
@@ -16,7 +16,7 @@ export async function deleteSheet(id: any): Promise<any> {
     const sheet = await repository.deleteSheet(id);
   
     return sheet;
-  }catch(error){
+  }catch(error:any){
     throw error;
   }
 }

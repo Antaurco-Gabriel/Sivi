@@ -15,7 +15,7 @@ export class Mongo {
         .sort({ ...sort })
         .toArray()
       return users
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -34,7 +34,7 @@ export class Mongo {
           },
         }
       )
-    } catch (error) {
+    } catch (error:any) {
       managmentMongoError(error)
     }
   }
@@ -56,7 +56,7 @@ export class Mongo {
         }
       )
       return user
-    } catch (error) {
+    } catch (error:any) {
       managmentMongoError(error)
     }
   }

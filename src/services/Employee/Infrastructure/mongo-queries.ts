@@ -9,7 +9,7 @@ export class Mongo {
       const collection = database.collection('companies');
       let companies = await collection.find({}, {}).toArray();
       return companies;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -53,7 +53,7 @@ export class Mongo {
         _id: new ObjectID(id),
       }, { }).toArray();
       return company; */
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -70,7 +70,7 @@ export class Mongo {
         },
       });
       return email.email;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -87,7 +87,7 @@ export class Mongo {
         },
       });
       return email.email;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -105,7 +105,7 @@ export class Mongo {
         },
       }).toArray();
       return id;
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }
@@ -119,7 +119,7 @@ export class Mongo {
 
       let newSheet = await collection.insertOne(data);
       return newSheet.ops[0];
-    }catch(error){
+    }catch(error:any){
       throw managmentMongoError(error);
     }
   }

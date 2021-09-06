@@ -7,7 +7,7 @@ export class Mongo {
       const collection = database.collection('users')
       let exists: boolean = (await collection.find({ email: email }).count()) > 0
       return exists
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -18,7 +18,7 @@ export class Mongo {
       const collection = database.collection('users')
       let exists: boolean = (await collection.find({ emailToken: token }).count()) > 0
       return exists
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -34,7 +34,7 @@ export class Mongo {
         { projection: { password: 0, __v: 0 } }
       )
       return user
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -47,7 +47,7 @@ export class Mongo {
         projection: { ...projection, password: 0, __v: 0 },
       })
       return user
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -62,7 +62,7 @@ export class Mongo {
         type: 0,
       })
       return newUser.ops[0]
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -86,7 +86,7 @@ export class Mongo {
       )
 
       return user.value.emailToken
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
@@ -109,7 +109,7 @@ export class Mongo {
       )
 
       return user.value.email !== undefined
-    } catch (error) {
+    } catch (error:any) {
       throw managmentMongoError(error)
     }
   }
