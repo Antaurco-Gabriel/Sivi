@@ -120,6 +120,10 @@
   align-self: center;
 }
 
+.table-pagination-section h3 {
+  font-weight: 400;
+}
+
 /* table-pagination BLOCK*/
 .table-pagination {
   list-style-type: none;
@@ -234,3 +238,5 @@ p {
 .custom-button:hover {
   background: #116be0;
 }
+
+.table
