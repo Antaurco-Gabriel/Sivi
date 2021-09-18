@@ -3,7 +3,8 @@ style
 
 mixin header()
   header.header-block(id="myTopnav")
-    a(href='/') SIVI 
+    a(href='/')
+      img.header-img(src="/public/images/logo horizontal-full-white.svg" alt="Sivi-logo")
     .links
       if block
         block
