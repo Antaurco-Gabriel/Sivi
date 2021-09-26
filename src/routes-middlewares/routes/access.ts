@@ -46,8 +46,8 @@ export default (app: router) => {
         const user = await login(email, pswd)
 
         const USERS_ROUTES: Object = {
-          0: '/rrhh/panel',
-          1: '/medico/panel',
+          0: '/admin/panel',
+          1: '/user/panel',
         }
 
         const DEFAULT_ROUTE: string = '/'
@@ -102,7 +102,7 @@ export default (app: router) => {
             type: 'success',
             text: 'Bienvenido',
           }
-          return res.redirect('/mis-cursos')
+          return res.redirect('/')
         })
       } catch (error:any) {
         managmentError(error, req, res)

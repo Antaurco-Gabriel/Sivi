@@ -1,0 +1,22 @@
+extends ../../../layouts/platform/main
+
+block head
+  link( rel='stylesheet', href='/views/users-module/admin/users-list/users-list.css' )
+  link( rel='stylesheet', href='/public/css/loader.css' )
+  script(src="https://unpkg.com/vue@next")
+
+block content
+
+  section.table-section(id="table" data-sheets=sheets)
+    //- .loader-section(:style="{'display': display}")
+      .loader-section__animation
+        span
+        span
+        span
+    .body-profile
+      .title-component
+        .title-component__title Lista de usuarios
+        .title-component__line
+
+block scripts
+  script(defer src="/views/users-module/admin/users-list/users-list.vue.js")

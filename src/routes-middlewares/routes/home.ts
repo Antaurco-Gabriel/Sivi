@@ -29,11 +29,24 @@
  */
 
 import { router, res, req } from '@Loaders/express'
+import { isAdmin, isUser } from '@Routes/middlewares/routeAccess'
 
 export default (app: router) => {
   app.route('/').get((_req: req, res: res) =>
     res.render('home/home/home', {
-      cardtitle: 'HOLA MUNDO',
+      cardtitle: 'Sivi Business',
+    })
+  )
+
+  app.route('/user/panel').get(isUser, (_req: req, res: res) =>
+    res.render('home/user-panel/user-panel', {
+      cardtitle: 'Sivi Business',
+    })
+  )
+
+  app.route('/admin/panel').get(isAdmin, (_req: req, res: res) =>
+    res.render('home/admin-panel/admin-panel', {
+      cardtitle: 'Sivi Business',
     })
   )
 }

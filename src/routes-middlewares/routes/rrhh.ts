@@ -36,18 +36,18 @@ import { isLogged, isRRHH } from '@Routes/middlewares/routeAccess'
 
 export default (app: Router) => {
   app
-    .route('/rrhh/panel')
+    .route('/user/modulo-salud/rrhh/panel')
     .get(isRRHH, async (req: any, res: Response): Promise<void> => {
       try {
         const sheets = await getPositiveSheets(req.user.company);
-        res.render('rrhh/panel/panel', {sheets: sheets})
+        res.render('health-module/rrhh/panel/panel', {sheets: sheets})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
   
   app
-    .route('/rrhh/eliminar-ficha/:id')
+    .route('/user/modulo-salud/rrhh/eliminar-ficha/:id')
     .delete(isRRHH, async (req: any, res: Response): Promise<void> => {
       try {
         const {id} = req.params

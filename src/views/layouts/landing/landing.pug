@@ -6,7 +6,7 @@ html
     meta( name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' )
     block meta
 
-    title #{title || 'Framework'} 
+    title #{title || 'Sivi Business'} 
 
     link( rel='shorcut icon', href='/public/images/idotipo-full.png' )
     link( rel='stylesheet', href='/public/css/normalize.min.css' )
@@ -25,12 +25,12 @@ html
       +header()
         if user
           if user.type === 0
-            a(href="/rrhh/panel") Fichas Sintomatológicas
+            a(href="/admin/panel") Panel
             a(href='/salir') Cerrar sesión
           if user.type === 1
-            a(href="/medico/panel") Fichas Sintomatológicas
+            a(href="/user/panel") Panel
             a(href='/salir') Cerrar sesión
-        else
+        //- else
           a(href='/ingresar') Iniciar sesión
     .content 
       block content

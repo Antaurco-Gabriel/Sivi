@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;500&display=swap');
+
+/*
+  bloque-nombre
+  bloque-nombre__elemento-nombre
+  bloque-nombre--modificador-nombre
+*/
+
+
+  @media screen and (max-width: 750px) {
+    
+    .table-table-section__table  td:nth-of-type(1):before {  content: "Fecha de reporte de síntomas"; }
+    .table-table-section__table  td:nth-of-type(2):before { content: "Hora de reporte de síntomas"; }
+    .table-table-section__table  td:nth-of-type(3):before { content: "Empresa"; }
+    .table-table-section__table  td:nth-of-type(4):before { content: "Nombres y Apellidos"; }
+    .table-table-section__table  td:nth-of-type(5):before { content: "DNI"; }
+    .table-table-section__table  td:nth-of-type(6):before { content: "Diagnósticos presuntivos"; }
+    .table-table-section__table  td:nth-of-type(7):before { content: "Tratamiento"; }
+    .table-table-section__table  td:nth-of-type(8):before { content: "Proximo seguimiento"; }
+    .table-table-section__table  td:nth-of-type(9):before { content: "Periodo restante de cuarentena"; }
+    .table-table-section__table  td:nth-of-type(10):before { content: "Opciones"; }
+  }
+
+p {
+  margin: 0;
+}

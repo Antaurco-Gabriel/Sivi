@@ -33,6 +33,7 @@ import access from './routes/access'
 import rrhh from './routes/rrhh'
 import employee from './routes/employee'
 import doctor from './routes/doctor'
+import admin from './routes/admin'
 
 export default () => {
   const app = router()
@@ -42,6 +43,7 @@ export default () => {
   rrhh(app)
   employee(app)
   doctor(app)
+  admin(app)
 
   return app
 }

@@ -1,0 +1,21 @@
+extends ../../layouts/landing/landing
+
+block head
+  link(rel="stylesheet", href='/views/home/admin-panel/admin-panel.css')
+
+block content
+  include ../../components/card/card
+
+  .panel-container
+    p.my-3 Bienvenido administrador
+    .row.my-4.mx-3
+      +card-container()
+        +card-link(
+          'Módulo Usuarios',
+          '/admin/modulo-usuarios',
+          '/public/images/users.svg'
+        )
+
+
+//- block append scripts
+  script(src='/views/home/admin-panel/admin-panel.js' defer)

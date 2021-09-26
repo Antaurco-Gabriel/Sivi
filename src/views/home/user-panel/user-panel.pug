@@ -1,0 +1,28 @@
+extends ../../layouts/landing/landing
+
+block head
+  link(rel="stylesheet", href='/views/home/user-panel/user-panel.css')
+
+block content
+  include ../../components/card/card
+
+  .panel-container(data=user.permits)
+    if (user.permits.health_module && user.permits.health_module.access)
+      case (user.permits.health_module.type)
+        when 0
+          +card-container()
+            +card-link(
+              'Módulo Covid',
+              '/user/modulo-salud/rrhh/panel',
+              '/public/images/doctor.svg'
+            )
+        when 1
+          +card-container()
+            +card-link(
+              'Módulo Covid',
+              '/user/modulo-salud/medico/panel',
+              '/public/images/doctor.svg'
+            )
+
+//- block append scripts
+  script(src='/views/home/user-panel/user-panel.js' defer)

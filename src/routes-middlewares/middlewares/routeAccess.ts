@@ -5,10 +5,10 @@ export function isLogged ( req: any, res:any, next:any){
     let route: string = '';
     switch(req.user.type){
       case 0:
-        route = '/rrhh/panel';
+        route = '/admin/panel';
         break;
       case 1:
-        route = '/medico/panel';
+        route = '/user/panel';
         break;
       default:
         route = '/salir';
@@ -21,6 +21,48 @@ export function isLogged ( req: any, res:any, next:any){
   return next();
 }
 
+export function isAdmin( req: any, res: any, next: any){
+  if(!req.user){
+    req.session['message'] = {
+      type: 'error',
+      text: 'Debe iniciar sesión para poder ver esta información',
+    }
+    return res.redirect('back');
+  }
+  
+  if(req.user.type == 0) {
+    return next();
+  }
+  
+  req.session['message'] = {
+    type: 'error',
+    text: 'Debe ser admin para poder ver esta información',
+  }
+
+  return res.redirect('back');
+}
+
+export function isUser( req: any, res: any, next: any){
+  if(!req.user){
+    req.session['message'] = {
+      type: 'error',
+      text: 'Debe iniciar sesión para poder ver esta información',
+    }
+    return res.redirect('back');
+  }
+  
+  if(req.user.type == 1) {
+    return next();
+  }
+  
+  req.session['message'] = {
+    type: 'error',
+    text: 'Debe estar registrado para poder ver esta información',
+  }
+
+  return res.redirect('back');
+}
+
 export function isRRHH( req: any, res: any, next: any){
   if(!req.user){
     req.session['message'] = {
@@ -29,8 +71,11 @@ export function isRRHH( req: any, res: any, next: any){
     }
     return res.redirect('back');
   }
-  if(req.user.type == 0){
-    return next();
+  
+  if(req.user.type == 1) {
+    if(req.user.permits.health_module && req.user.permits.health_module.access && req.user.permits.health_module.type === 0) {
+      return next();
+    }
   }
 
   req.session['message'] = {
@@ -50,7 +95,9 @@ export function isDoctor( req: any, res: any, next: any){
     return res.redirect('back');
   }
   if(req.user.type == 1){
-    return next();
+    if(req.user.permits.health_module && req.user.permits.health_module.access && req.user.permits.health_module.type === 1) {
+      return next();
+    }
   }
 
   req.session['message'] = {

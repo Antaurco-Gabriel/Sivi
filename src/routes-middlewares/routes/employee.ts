@@ -5,11 +5,11 @@ import { createSymptomatology, getAllCompanies, getCompany, getDoctorEmail, getR
 
 export default (app: Router) => {
   app
-    .route('/sintomatologia')
+    .route('/modulo-salud/sintomatologia')
     .get(async (_req: Request, res: Response): Promise<void> => {
       try {
         const data = await getAllCompanies()
-        res.render('employee/symptomatology/symptomatology', {symptomatology: data})
+        res.render('health-module/employee/symptomatology/symptomatology', {symptomatology: data})
       } catch (error:any) {
         return managmentError(error, _req, res);
       }

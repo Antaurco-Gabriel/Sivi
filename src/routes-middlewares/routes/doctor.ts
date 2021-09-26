@@ -37,36 +37,36 @@ import { createMedicalFollowUp, updateMedicalFollowUp, updateSheet } from 'servi
 
 export default (app: Router) => {
   app
-    .route('/medico/panel')
+    .route('/user/modulo-salud/medico/panel')
     .get(isDoctor, async (req: any, res: Response): Promise<void> => {
       try {
         const sheets = await getAllPositiveSheets();
-        res.render('doctor/panel/panel',{sheets: sheets})
+        res.render('health-module/doctor/panel/panel',{sheets: sheets})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
   
   app
-    .route('/medico/lista-seguimientos/:id')
+    .route('/user/modulo-salud/medico/lista-seguimientos/:id')
     .get(isDoctor, async (req: any, res: Response): Promise<void> => {
       try {
         const {id} = req.params
         const sheet = await getSheet(id);
         const medicalFollowUps = await getMedicalFollowUps(id);
-        res.render('doctor/medical-follow-up/medical-follow-up', {sheet: sheet, medicalFollowUps: medicalFollowUps})
+        res.render('health-module/doctor/medical-follow-up/medical-follow-up', {sheet: sheet, medicalFollowUps: medicalFollowUps})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
   
   app
-    .route('/medico/crear-seguimiento/:id')
+    .route('/user/modulo-salud/medico/crear-seguimiento/:id')
     .get(isDoctor, async (req: any, res: Response): Promise<void> => {
       try {
         const {id} = req.params
         const sheet = await getSheet(id);
-        res.render('doctor/create-medical-follow-up/create-medical-follow-up', {sheet: sheet})
+        res.render('health-module/doctor/create-medical-follow-up/create-medical-follow-up', {sheet: sheet})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
@@ -80,7 +80,7 @@ export default (app: Router) => {
         const newFollowUp =  await createMedicalFollowUp(data);
         const updatedSheet = await updateSheet(id, data);
         
-        return res.redirect('/medico/lista-seguimientos/' + id)
+        return res.redirect('/user/modulo-salud/medico/lista-seguimientos/' + id)
 
       } catch (error:any) {
         managmentError(error, req, res);
@@ -88,24 +88,24 @@ export default (app: Router) => {
     })
 
   app
-    .route('/medico/ver-seguimiento/:id')
+    .route('/user/modulo-salud/medico/ver-seguimiento/:id')
     .get(isDoctor, async (req: any, res: Response): Promise<void> => {
       try {
         const {id} = req.params
         const medicalFollowUp = await getMedicalFollowUp(id);
-        res.render('doctor/view-medical-follow-up/view-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
+        res.render('health-module/doctor/view-medical-follow-up/view-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
     })
 
   app
-    .route('/medico/editar-seguimiento/:id')
+    .route('/user/modulo-salud/medico/editar-seguimiento/:id')
     .get(isDoctor, async (req: any, res: Response): Promise<void> => {
       try {
         const {id} = req.params
         const medicalFollowUp = await getMedicalFollowUp(id);
-        res.render('doctor/edit-medical-follow-up/edit-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
+        res.render('health-module/doctor/edit-medical-follow-up/edit-medical-follow-up', {sheet: medicalFollowUp.sheet, medicalFollowUp})
       } catch (error:any) {
         return managmentError(error, req, res);
       }
@@ -117,7 +117,7 @@ export default (app: Router) => {
         const editedFollowUp =  await updateMedicalFollowUp(data);
         const updatedSheet = await updateSheet(data.idSheet, data);
         
-        return res.redirect('/medico/lista-seguimientos/' + data.idSheet)
+        return res.redirect('/user/modulo-salud/medico/lista-seguimientos/' + data.idSheet)
 
       } catch (error:any) {
         managmentError(error, req, res);
