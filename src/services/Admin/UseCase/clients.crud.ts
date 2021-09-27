@@ -23,6 +23,28 @@ export async function sendClients(): Promise<any> {
   }
 }
 
+export async function sendCompanies(): Promise<any> {
+  try {
+    const where = {}
+
+    const select = {
+      name: 1,
+      ruc: 1,
+      _id: 0,
+    }
+
+    const order = {
+      name: 1,
+    }
+
+    const data = await repository.findAllCompanies(where, select, order)
+
+    return data
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function putCaseExample(id: string, data: any): Promise<string> {
   try {
     const update = {

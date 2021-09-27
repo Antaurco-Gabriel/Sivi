@@ -26,6 +26,29 @@ export class Mongo {
     }
   }
 
+  public async findAllCompanies(
+    filter?: any,
+    projection?: any,
+    sort?: any
+  ): Promise<any> {
+    try {
+      const database = getConection()
+      const collection = database.collection('companies')
+      let companies: any[] = await collection
+        .find(filter, {
+          projection: {
+            ...projection,
+          },
+        })
+        .sort({ ...sort })
+        .toArray()
+
+      return companies
+    } catch (error:any) {
+      throw managmentMongoError(error)
+    }
+  }
+
   public async updateOne(id: string, data?: any): Promise<any> {
     try {
       const database = getConection()
