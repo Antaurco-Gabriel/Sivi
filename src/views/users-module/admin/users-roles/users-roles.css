@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;500&display=swap');
+
+.option-modules-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #00acda;
+}
+
+.card-data-user {
+  color: #3d3d3d;
+  border: 1px solid #d9d7df;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.card-data-user__detail {
+  color: #7d7889;
+  margin-left: 6px;
+}

@@ -1,13 +1,13 @@
 extends ../../../layouts/platform/main
 
 block head
-  link( rel='stylesheet', href='/views/users-module/admin/users-list/users-list.css' )
+  link( rel='stylesheet', href='/views/users-module/admin/companies-list/companies-list.css' )
   link( rel='stylesheet', href='/public/css/loader.css' )
   script(src="https://unpkg.com/vue@next")
 
 block content
 
-  section.table-section(id="users-list" data-users=users)
+  section.table-section(id="table" data-companies=companies)
     .loader-section(:style="{'display': display}")
       .loader-section__animation
         span
@@ -15,31 +15,35 @@ block content
         span
     .body-profile
       .title-component
-        .title-component__title Lista de usuarios de {{companyData.name}}
+        .title-component__title Lista de empresas
         .title-component__line
+
+      .row.my-4.justify-content-md-end
+        .col-md-6
+          .buttons-component.my-1.justify-content-md-end.px-4
+            a.custom-button.buttons-component__button(href='/admin/modulo-usuarios/registrar-empresa') Registrar empresa
       
       .table-table-section.my-3(v-if="displayedData.length>0")
         table.table-table-section__table
           thead
             tr
-              td(scope="col") Nombres y Apellidos
-              td(scope="col") Correo
-              td(scope="col") Rol
+              td(scope="col") Razón Social
+              td(scope="col") RUC
               td(scope="col") Opciones
           tbody
             tr(v-for="(data, index) in displayedData" :key="data._id")
-              td(scope="col") {{data.fullnames}}
-              td(scope="col") {{data.email}}
-              td(scope="col") {{data.role}}
+              td(scope="col") {{data.name}}
+              td(scope="col") {{data.ruc}}
               td.table-table-section__table--options(scope="col")
                 .dropdown
                   button.dropbtn(@click='dropdownButton(index)') Opciones
                   .dropdown-content(:id=`'myDropdown-'+index`)
-                    a(:href=`'/admin/modulo-usuarios/editar-permisos/' + data._id`) Editar permisos
-                    button(type="button" @click='confirmDelete(data._id)').dropdown-inter-button.cursor-pointer Eliminar trabajador
+                    a(:href=`'/admin/modulo-usuarios/lista-usuarios/'+ data._id`) Ver usuarios
+                    a(:href=`'#'`) Registrar usuario
+                    button(type="button" @click='confirmDelete(data._id)').dropdown-inter-button.cursor-pointer Eliminar empresa
 
       .table-pagination-section(v-else)
-        h3(style="font-weight: 400;") No hay usuarios registrados aún
+        h3(style="color:white; font-weight: 400;") No hay empresas registradas aún
 
       .table-pagination-section(v-if="displayedData.length>0")
         ul.table-pagination
@@ -57,4 +61,4 @@ block content
             a.table-pagination__page.table-pagination__page--last(v-if="page != pages.length && page <= pages.length - 3" @click="page = pages.length") {{pages.length}}
 
 block scripts
-  script(defer src="/views/users-module/admin/users-list/users-list.vue.js")
+  script(defer src="/views/users-module/admin/companies-list/companies-list.vue.js")

@@ -45,6 +45,16 @@ export default (app: router) => {
 
         const user = await login(email, pswd)
 
+        // VERIFICAMOS SI EL USUARIO ESTA SUSPENDIDO
+        if(user.status === 1){
+          req.session['message'] = {
+            type: 'error',
+            text: 'Su usuario ha sido suspendido',
+          }
+          return res.redirect('back');
+        }
+
+        // SI NO ESTA SUSPENDIDO
         const USERS_ROUTES: Object = {
           0: '/admin/panel',
           1: '/user/panel',

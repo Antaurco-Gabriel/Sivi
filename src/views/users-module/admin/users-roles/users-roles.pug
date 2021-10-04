@@ -1,0 +1,92 @@
+extends ../../../layouts/platform/main
+
+block head
+  link( rel='stylesheet', href='/views/users-module/admin/users-roles/users-roles.css' )
+  link( rel='stylesheet', href='/public/css/loader.css' )
+  script(src="https://unpkg.com/vue@next")
+
+block content
+
+  section.table-section(id="permits" data-user=userData)
+    .loader-section(:style="{'display': display}")
+      .loader-section__animation
+        span
+        span
+        span
+    .body-profile
+      .title-component.px-2
+        .title-component__title Editar Permisos
+        .title-component__line
+      .row.body-component.px-4
+        .col-md-10.my-3.card-data-user
+          .m-3
+            span.my-2 Usuario: 
+              span.card-data-user__detail {{dataUser.fullnames}}
+          .m-3
+            span.my-2 Empresa: 
+              span.card-data-user__detail {{dataUser.company.name}}
+          .m-3
+            span.my-2 RUC: 
+              span.card-data-user__detail ({{dataUser.company.ruc}})
+        form.col-md-10.px-4(method="POST")
+          .row.justify-content-start.my-3
+            input(type='hidden' name="company" v-model='dataUser.company._id')
+            .col-md-12
+              .row.p-3
+                .col-12.p-0
+                  p.mb-2.custom-label ¿Este usuario es administrador?
+                .d-inline-flex.m-3
+                  input.mb-2.form-control.form-control--radio#uno(type='radio' value='0' name="isAdmin" v-model='dataUser.permits.isAdmin')
+                  label.mb-2.custom-label(for='acceso') Si
+                .d-inline-flex.m-3
+                  input.mb-2.form-control.form-control--radio#Dos(type='radio' value='1' name="isAdmin" v-model='dataUser.permits.isAdmin')
+                  label.mb-2.custom-label(for='no-acceso') No
+          .row(v-if="dataUser.permits.isAdmin === '1'")
+            .row.justify-content-start.my-3
+              .col-md-12
+                span.option-modules-title Módulo Covid
+              .col-md-6
+                .row.p-3
+                  .col-12.p-0
+                    p.mb-2.custom-label Acceso:
+                  .d-inline-flex.m-3
+                    input.mb-2.form-control.form-control--radio#uno(type='radio' value='1' name="health_module_access" v-model='dataUser.permits.health_module.access')
+                    label.mb-2.custom-label(for='acceso') Tiene acceso
+                  .d-inline-flex.m-3
+                    input.mb-2.form-control.form-control--radio#Dos(type='radio' value='0' name="health_module_access" v-model='dataUser.permits.health_module.access')
+                    label.mb-2.custom-label(for='no-acceso') No tiene acceso
+              .col-md-6(v-if="dataUser.permits.health_module.access === '1'")
+                .row.p-3
+                  label.mb-2.custom-label(for='typeUser') Tipo de usuario:
+                  select.mb-2.custom-select#typeUser(v-model="dataUser.permits.health_module.type" name="health_module_type" :disabled="health_module_options.length===0" required)
+                    option(value="" disabled) -- Elegir --
+                    option(v-for="( option ) in health_module_options" :value="option.value") {{ option.text }}
+            .row.justify-content-start.my-3
+              .col-md-12
+                span.option-modules-title Módulo Encuestas
+              .col-md-6
+                .row.p-3
+                  .col-12.p-0
+                    p.mb-2.custom-label Acceso:
+                  .d-inline-flex.m-3
+                    input.mb-2.form-control.form-control--radio#uno(type='radio' value='1' name="surveys_module_access" v-model='dataUser.permits.surveys_module.access')
+                    label.mb-2.custom-label(for='acceso') Tiene acceso
+                  .d-inline-flex.m-3
+                    input.mb-2.form-control.form-control--radio#Dos(type='radio' value='0' name="surveys_module_access" v-model='dataUser.permits.surveys_module.access')
+                    label.mb-2.custom-label(for='no-acceso') No tiene acceso
+              .col-md-6(v-if="dataUser.permits.surveys_module.access === '1'")
+                .row.p-3
+                  label.mb-2.custom-label(for='typeUser') Tipo de usuario:
+                  select.mb-2.custom-select#typeUser(v-model="dataUser.permits.surveys_module.type" name="surveys_module_type" :disabled="surveys_module_options.length===0" required)
+                    option(value="" disabled) -- Elegir --
+                    option(v-for="( option ) in surveys_module_options" :value="option.value") {{ option.text }}
+          .row.justify-content-center.my-5(v-else)
+            p.custom-label Este usuario tiene acceso a todos los módulos
+          .row.justify-content-center.my-3
+            .buttons-component.my-1
+              a.custom-button.buttons-component__button.custom-button--return(:href=`'/admin/modulo-usuarios/lista-usuarios/' + dataUser.company._id`) Volver
+            .buttons-component.my-1
+              button.custom-button.buttons-component__button(type='submit') Guardar cambios
+
+block scripts
+  script(defer src="/views/users-module/admin/users-roles/users-roles.vue.js")

@@ -8,9 +8,7 @@ const companiesData = Vue.createApp({
       page:1,
       perPage:10,
       pages:[],
-      display: 'flex',
-      companyData: {},
-      companyId: '',
+      display: 'flex'
     }
   },
   async created(){
@@ -20,25 +18,11 @@ const companiesData = Vue.createApp({
   },
   methods:{
     async getData() {
-      const companyData = JSON.parse(document.getElementById("users-list").getAttribute("data-users"));
+      const companies = JSON.parse(document.getElementById("table").getAttribute("data-companies"));
 
-      this.companyData = {
-        name: companyData.name,
-        ruc: companyData.ruc,
-      }
-
-      for (const user of companyData.users) {
-        if (user.permits.isAdmin !== undefined){
-          user.role = user.permits.isAdmin === 0 ? 'Admin' : 'Trabajador'
-        } else {
-          user.role = 'Trabajador'
-        }
-      }
-
-      console.log(companyData.users)
-
-      this.dataOrigin = companyData.users
+      this.dataOrigin = companies
       this.data = this.dataOrigin
+
     },
 
     setNumberPages(data) {
@@ -65,14 +49,14 @@ const companiesData = Vue.createApp({
 
     confirmDelete(id) {
       Swal.fire({
-          title: '¿Desea eliminar esta usuario?',
+          title: '¿Desea eliminar esta empresa?',
           text: 'Esta opción no podra revertirse',
           showCancelButton: true,
           confirmButtonText: 'Confirmar',
           cancelButtonText: 'Cancelar',
       }).then((result) => {
           if (result.isConfirmed) {
-            return window.location.href = '/admin/modulo-usuarios/eliminar-usuario/'+ id;
+            return window.location.href = '/admin/modulo-usuarios/eliminar-empresa/'+ id;
           }
       })
     }
@@ -88,7 +72,7 @@ const companiesData = Vue.createApp({
   }
 })
 
-companiesData.mount("#users-list");
+companiesData.mount("#table");
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
