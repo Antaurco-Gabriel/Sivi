@@ -18,9 +18,6 @@ export const liveReloadServer = async (
     let connectLiveReload = (await import('connect-livereload')).default
 
     app.use(connectLiveReload())
-    console.log(`
-      ########################################
-      ║ 🗡  Live reload [ pug, css, js ]  🗡   ║
-      ########################################`)
+    console.log(`-------- Live reload [ pug, css, js ] --------`)
   }
 }

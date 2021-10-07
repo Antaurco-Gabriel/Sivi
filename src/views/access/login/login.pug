@@ -15,7 +15,6 @@ block append head
   link(rel="stylesheet", href='/views/access/login/login.css')
 
 block content
-  //- include ../../components/captcha/captcha
 
   section.full-page
     .full-page__container
@@ -31,7 +30,6 @@ block content
           p.text-status
             span#upperCase  1 Letra mayúscula
             span#length.text-status--right.margen-izquierdo  Min 8 caracteres
-          //- +captcha()
           button#login-form-button.button(type='submit') Ingresar
 
 block append scripts

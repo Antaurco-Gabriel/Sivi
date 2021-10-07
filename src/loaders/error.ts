@@ -37,14 +37,7 @@ type ErrorData = {
 export const managmentError = (error: string, req: req, res: res): void => {
   let dataError: ErrorData = JSON.parse(error)
 
-  console.log(`
-      ==================💀====================
-		`)
-  console.log(`
-      ########################################
-      ║  💩💩💩     Hubo un throw    💩💩💩  ║
-      ########################################
-		`)
+  console.log(`-------- Hubo un throw --------`)
 
   console.log(`     Ruta del throw: ${req.path}`)
   console.log(`     Metodo de la ruta: ${req.method}`)
@@ -62,14 +55,7 @@ export const managmentError = (error: string, req: req, res: res): void => {
 export const managmentApiError = (error: string, req: req, res: res): res => {
   let dataError: ErrorData = JSON.parse(error)
 
-  console.log(`
-      ==================💀====================
-		`)
-  console.log(`
-      ########################################
-      ║  💩💩  Hubo un throw en tu api 💩💩  ║
-      ########################################
-		`)
+  console.log(`-------- Hubo un throw en tu api --------`)
 
   console.log(`     Ruta del throw: ${req.path}`)
   console.log(`     Metodo de la ruta: ${req.method}`)
