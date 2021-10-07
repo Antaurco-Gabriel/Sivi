@@ -37,14 +37,7 @@ type ErrorData = {
 export const managmentError = (error: string, req: req, res: res): void => {
   let dataError: ErrorData = JSON.parse(error)
 
-  console.log(`
-      ==================💀====================
-		`)
-  console.log(`
-      ########################################
-      ║  💩💩💩     Hubo un throw    💩💩💩  ║
-      ########################################
-		`)
+  console.log(`-------- Hubo un throw --------`)
 
   console.log(`     Ruta del throw: ${req.path}`)
   console.log(`     Metodo de la ruta: ${req.method}`)
@@ -59,17 +52,29 @@ export const managmentError = (error: string, req: req, res: res): void => {
   res.redirect(dataError.redirect || 'back')
 }
 
+
+export const alertError = (error: string, req: req, res: res): void => {
+  let dataError: any = error.toString()
+
+  console.log(`-------- Hubo un throw --------`)
+
+  console.log(`     Ruta del throw: ${req.path}`)
+  console.log(`     Metodo de la ruta: ${req.method}`)
+  console.log(`     Typo de throw: ${dataError.status}`)
+  console.log(`     Mensaje: ${dataError.message}`)
+  console.log(`     Redirección: ${dataError.redirect || 'back'}`)
+
+  req.session['message'] = {
+    type: 'error',
+    text: dataError,
+  }
+  res.redirect(dataError.redirect || 'back')
+}
+
 export const managmentApiError = (error: string, req: req, res: res): res => {
   let dataError: ErrorData = JSON.parse(error)
 
-  console.log(`
-      ==================💀====================
-		`)
-  console.log(`
-      ########################################
-      ║  💩💩  Hubo un throw en tu api 💩💩  ║
-      ########################################
-		`)
+  console.log(`Hubo un throw en tu api`)
 
   console.log(`     Ruta del throw: ${req.path}`)
   console.log(`     Metodo de la ruta: ${req.method}`)

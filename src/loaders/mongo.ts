@@ -40,16 +40,10 @@ export async function connect() {
     }
     let db: MongoClient = await MongoClient.connect(mongodb.MONGO_URI, ops)
     dataBase = db.db()
-    console.log(`
-      ########################################
-      ║ ⚔    Mongo Database connected     ⚔  ║
-      ########################################`)
+    console.log(`-------- Mongo Database connected --------`)
     return dataBase
   } catch (error) {
-    console.log(`
-      ########################################
-      ║ ☠    Mongo Database is dead     ☠  ║
-      ########################################`)
+    console.log(`-------- Mongo Database is dead --------`)
   }
 }
 
@@ -67,11 +61,7 @@ export function getConection(): Db {
 }
 
 export function managmentMongoError(error: MongoError): string {
-  console.log(`
-      ########################################
-      ║  🤬🤬  Hubo un error en Mongo   🤬🤬 ║
-      ########################################
-		`)
+  console.log(`-------- Hubo un error en Mongo --------`)
   console.log(error.name)
   console.log(`Mensaje: ${error.message} `)
   return JSON.stringify({ status: 500, message: 'Error interno, intentelo más tarde' })

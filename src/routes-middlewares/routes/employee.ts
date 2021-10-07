@@ -27,7 +27,28 @@ export default (app: Router) => {
           
           if (diagnosis) {
             const companyData = await getCompany(data.company);
-            await sendMails(sheetSymp, companyData[0]);
+
+            let rrhhEmail = ''
+            let doctorEmail = "medico@nexconsulting.pe" // Momentaneo
+
+            for (const user of companyData.users) {
+              if (user.permits.health_module !== undefined && user.permits.isAdmin !== 0) {
+                if (user.permits.health_module.access && user.permits.health_module.type === 0) {
+                  rrhhEmail = user.email
+                }
+                if (user.permits.health_module.access && user.permits.health_module.type === 1) {
+                  doctorEmail = user.email
+                }
+              }
+            }
+
+            const company = {
+              name: companyData.name,
+              rrhh: rrhhEmail,
+              doctor: doctorEmail,
+            }
+
+            await sendMails(sheetSymp, company);
 
             req.session['message'] = {
               type: 'warning',
@@ -49,7 +70,13 @@ export default (app: Router) => {
         return res.redirect('/')
 
       } catch (error:any) {
-        managmentError(error, req, res);
+
+        req.session['message'] = {
+          type: 'error',
+          text: 'Hubo un error',
+        }
+        console.log(error)
+        //managmentError(error, req, res);
       }
     })
 }

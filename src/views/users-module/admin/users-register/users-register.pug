@@ -1,0 +1,33 @@
+extends ../../../layouts/platform/main
+
+block head
+  link( rel='stylesheet', href='/views/users-module/admin/users-register/users-register.css' )
+  link( rel='stylesheet', href='/public/css/loader.css' )
+  script(src="https://unpkg.com/vue@next")
+
+block content
+
+  section.table-section
+    .body-profile
+      .title-component.px-2
+        .title-component__title Registrar Usuario
+        .title-component__line
+      .row.body-component.px-4
+        form.col-md-10.px-4(method="POST" onsubmit=" return validateEmail(event)")
+          .row.justify-content-start.my-3
+            .col-md-6
+              .row.p-3
+                label.mb-2.custom-label(for='name') Nombres y apellidos:
+                input#name.mb-2.form-control(type='text', placeholder='' name="name" required)
+            .col-md-6
+              .row.p-3
+                label.mb-2.custom-label(for='email') Correo:
+                input#email.mb-2.form-control(type='text', placeholder='' name="email" required)
+          .row.justify-content-center.my-3
+            .buttons-component.my-1
+              a.custom-button.buttons-component__button.custom-button--return(href='/admin/modulo-usuarios/') Volver
+            .buttons-component.my-1
+              button.custom-button.buttons-component__button(type='submit') Registrar
+
+block scripts
+  script(defer src="/views/users-module/admin/users-register/users-register.js")

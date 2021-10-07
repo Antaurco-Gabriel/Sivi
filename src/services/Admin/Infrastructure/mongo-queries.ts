@@ -178,4 +178,29 @@ export class Mongo {
     }
   }
 
+  public async registerNewUser(data: any): Promise<any>{
+    try{
+      const database = getConection();
+      const collection = database.collection('users');
+
+      let newUser = await collection.insertOne(data);
+      return newUser.ops[0];
+    }catch(error:any){
+      throw managmentMongoError(error);
+    }
+  }
+
+
+  public async existEmail(email: string): Promise<boolean> {
+    try {
+      const database = getConection()
+      const collection = database.collection('users')
+      let exists: boolean = (await collection.find({ email: email }).count()) > 0
+      return exists
+    } catch (error:any) {
+      throw managmentMongoError(error)
+    }
+  }
+
+
 }

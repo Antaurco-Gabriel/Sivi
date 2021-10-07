@@ -23,7 +23,7 @@ export class Mongo {
         {
           $match: {_id: new ObjectID(id)}
         },
-        {
+        /* {
           '$lookup': {
             'from': 'users',
             'localField': 'rrhh',
@@ -40,11 +40,18 @@ export class Mongo {
             'as': 'doctor'
           }
         },
-        { '$unwind': { path: '$doctor' } },
+        { '$unwind': { path: '$doctor' } }, */
+        {
+          '$lookup': {
+            'from': 'users',
+            'localField': 'users',
+            'foreignField': '_id',
+            'as': 'users'
+          }
+        },
         { '$project': {
             'name': 1,
-            'rrhh': { email: 1 },
-            'doctor': { email: 1}
+            'users': 1,
         }},
       ]).toArray();
       return company;

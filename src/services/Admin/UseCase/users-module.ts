@@ -1,3 +1,4 @@
+import { ObjectID } from 'mongodb'
 import { repository } from '../Domain/repository'
 
 export async function sendClients(id: any): Promise<any> {
@@ -147,30 +148,48 @@ export async function createCompany(data: any): Promise<any> {
 
 }
 
-/* export async function putCaseExample(id: string, data: any): Promise<string> {
+export async function registerCompleteUser(data: any, id: any): Promise<any> {
   try {
-    const update = {
-      data1: data.aux,
-      data2: data.aux2,
+
+    const exists: boolean = await repository.existEmail( data.email );
+    if( exists ) throw "El correo ingresado ya esta registrado";
+
+    let encryptPassword: string = repository.encryptPassword('Sivi123!');
+
+    const userData = {
+      email: data.email,
+      password: encryptPassword,
+      type: 1,
+      company: new ObjectID(id),
+      permits: {},
+      fullnames: data.name,
+      status: 0,
     }
 
-    await repository.updateOne(id, update)
+    let newUser = await repository.registerNewUser(userData)
+
+    return newUser
+  } catch (error) {
+    throw error
+  }
+
+}
+
+export async function setUserCompany(id: any, idUser: any): Promise<string> {
+  try {
+    
+    let data = await repository.findCompanyUsers(id)
+    let usersList = data[0].users
+    usersList.push(new ObjectID(idUser))
+
+    const update = {
+      users: usersList,
+    }
+
+    await repository.updateCompany(id, update)
 
     return 'Se hizo el cambio'
   } catch (error) {
     throw error
   }
-} */
-
-/* export async function deleteCaseExample(email: string): Promise<string> {
-  try {
-    console.log(email)
-    // const exits = await repository.findAll(email)
-    // if (!exits) throw 'El correo ingresado no esta registrado en la plataforma.'
-
-    return 'Se elimino'
-  } catch (error) {
-    throw error
-  }
 }
- */

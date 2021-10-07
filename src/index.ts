@@ -33,10 +33,7 @@ import { connect } from '@Loaders/mongo'
 async function startProyect() {
   try {
     console.clear()
-    console.log(`
-      ########################################
-      ║           Framework v0.11.4          ║
-      ########################################`)
+    console.log(`-------- Sivi Business --------`)
 
     await connect()
     await startServer()

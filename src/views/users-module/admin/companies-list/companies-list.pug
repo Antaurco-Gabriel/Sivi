@@ -39,7 +39,7 @@ block content
                   button.dropbtn(@click='dropdownButton(index)') Opciones
                   .dropdown-content(:id=`'myDropdown-'+index`)
                     a(:href=`'/admin/modulo-usuarios/lista-usuarios/'+ data._id`) Ver usuarios
-                    a(:href=`'#'`) Registrar usuario
+                    a(:href=`'/admin/modulo-usuarios/registrar-usuario/'+ data._id`) Registrar usuario
                     button(type="button" @click='confirmDelete(data._id)').dropdown-inter-button.cursor-pointer Eliminar empresa
 
       .table-pagination-section(v-else)

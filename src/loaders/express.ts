@@ -113,11 +113,7 @@ export async function startServer(): Promise<Express> {
 
   app
     .listen(app.get('port'), () => {
-      console.log(`
-      ########################################
-      ║ 🛡️ Express listening on port: ${app.get('port')} 🛡️  ║
-      ########################################
-    `)
+      console.log(`-------- Express listening on port: ${app.get('port')} ----------`)
     })
     .on('error', (error: any) => {
       console.log(error)

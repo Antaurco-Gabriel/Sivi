@@ -1,7 +1,7 @@
 import { Router, Response, Request } from 'express'
-import { managmentError } from '@Loaders/error'
+import { alertError, managmentError } from '@Loaders/error'
 import { isAdmin } from '@Routes/middlewares/routeAccess'
-import { createCompany, deleteCompany, deleteUser, sendClients, sendCompanies, sendCompany, sendUser, updatePermitsUser } from '@Admin/UseCase/users-module'
+import { createCompany, deleteCompany, deleteUser, registerCompleteUser, sendClients, sendCompanies, sendCompany, sendUser, setUserCompany, updatePermitsUser } from '@Admin/UseCase/users-module'
 
 export default (app: Router) => {
 
@@ -24,6 +24,7 @@ export default (app: Router) => {
       try {
         const {id} = req.params
         const users = await sendClients(id);
+        console.log(users)
         res.render('users-module/admin/users-list/users-list', {users: users[0], id})
       } catch (error:any) {
         return managmentError(error, req, res);
@@ -57,6 +58,35 @@ export default (app: Router) => {
         return managmentError(error, req, res);
       }
     })
+  
+  // MODULO USUARIOS - REGISTRAR USUARIO
+  app
+  .route('/admin/modulo-usuarios/registrar-usuario/:id')
+  .get(isAdmin, async (req: any, res: Response): Promise<void> => {
+    try {
+
+      res.render('users-module/admin/users-register/users-register')
+    } catch (error:any) {
+      return managmentError(error, req, res);
+    }
+  })
+  .post(isAdmin, async (req: any, res: Response): Promise<void> => {
+    try {
+      const {id} = req.params
+      const data = req.body
+
+      const newUser = await registerCompleteUser(data, id)
+      const companyUpdated = await setUserCompany(id, newUser._id)
+
+      req.session['message'] = {
+        type: 'success',
+        text: `Usuario registrado correctamente`,
+      }
+      res.redirect('/admin/modulo-usuarios/')
+    } catch (error:any) {
+      return alertError(error, req, res);
+    }
+  })
   
   // MODULO USUARIOS - ELIMINAR EMPRESA
   app

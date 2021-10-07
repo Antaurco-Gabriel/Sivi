@@ -15,7 +15,7 @@ export async function getCompany(id: any): Promise<any> {
   try{
     const company = await repository.findCompany(id);
 
-    return company;
+    return company[0];
   }catch(error){
     throw error;
   }
@@ -92,8 +92,11 @@ export async function sendMails(sheetData: any, companyData: any): Promise<any> 
             El equipo de SIVI`;
 
     // Send email
-    await mailerService(companyData.rrhh.email, subject, textRrhh);
-    await mailerService(companyData.doctor.email, subject, textDoctor);
+    if (companyData.rrhh !== '') {
+      await mailerService(companyData.rrhh, subject, textRrhh);
+    }
+    
+    await mailerService(companyData.doctor, subject, textDoctor);
 
   }catch(error){
     throw error;
